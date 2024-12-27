@@ -29,3 +29,9 @@ Route::get('/product/{id}', function(string $id){
 Route::get('{lang}/product/{id}', function(string $lang, string $id){
     return "Product $id in $lang";
 });
+
+// optional parameter route
+// it mean the parameter is optional
+Route::get('/product/{category?}', function(string $category = null){
+   return "Product $category";
+});
