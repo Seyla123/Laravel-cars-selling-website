@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ShowCarController;
 
 // define route for home page
 Route::get('/', function () {
@@ -106,3 +108,9 @@ Route::fallback(function(){
 Route::get('/sum/{a}/{b}', function(int $a, int $b){
     return $a + $b;
 })->whereNumber(['a', 'b']);
+
+// controller lesson
+// Route::get('/cars',[CarController::class, 'index']);
+
+Route::get('/cars', ShowCarController::class);
+
