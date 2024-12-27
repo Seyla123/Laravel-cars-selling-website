@@ -100,3 +100,9 @@ Route::name('admin.')->prefix('admin')->group(function(){
 Route::fallback(function(){
     return "fallback";
 });
+
+// small challenge
+//sum 2 parameters
+Route::get('/sum/{a}/{b}', function(int $a, int $b){
+    return $a + $b;
+})->whereNumber(['a', 'b']);
