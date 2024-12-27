@@ -95,3 +95,8 @@ Route::name('admin.')->prefix('admin')->group(function(){
         return "Users2 Name";
     })->name('users2');
 });
+
+// route fallback when unmatch route
+Route::fallback(function(){
+    return "fallback";
+});
