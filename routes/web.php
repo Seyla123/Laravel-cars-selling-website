@@ -3,9 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $person = [
+        'name' => 'John Doe',
+        'age' => 30
+    ];
+    dd($person);
     return view('welcome');
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::view('/about','about',[
+    'name' => 'John Doe',
+]);
+
