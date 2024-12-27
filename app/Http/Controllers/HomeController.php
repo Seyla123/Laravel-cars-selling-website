@@ -9,9 +9,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index',[
-            "name"=>"seav seyla",
-            "age"=>21
-        ]);
+        // return view('home.index',[
+        //     "name"=>"seav seyla",
+        //     "age"=>21
+        // ]);
+        return view('home.index')
+        ->with('name','seav seyla')
+        ->with('age',21);
     }
 }
