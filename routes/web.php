@@ -59,3 +59,39 @@ Route::get('/search/{search}', function(string $search){
 Route::get('route-name-22', function(){
     return "Route Name";
 })->name('route-name');
+
+//redirect
+Route::get('/user/profile', function(){
+    return "user profile";
+})->name('profile');
+
+Route::get("/current-user", function(){
+    // this will redirect to user profile route
+    // return redirect()->route('profile');
+
+    // this will redirect to route profile
+    return to_route('profile');
+});
+
+// route group
+//prefix
+Route::prefix('admin')->group(function(){
+    Route::get("/users", function(){
+        dd(route('admin.users'));
+        return "Users";
+    });
+});
+//name
+Route::name('admin.')->group(function(){
+    Route::get("/users", function(){
+        return "Users Name";
+    })->name('users');
+});
+
+// group combination name and prefix
+Route::name('admin.')->prefix('admin')->group(function(){
+    Route::get("/users2", function(){
+        dd(route('admin.users2'));
+        return "Users2 Name";
+    })->name('users2');
+});
