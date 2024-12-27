@@ -21,17 +21,20 @@ Route::view('/about','about',[
 ]);
 
 // 1 parameter route
+// required parameter
 Route::get('/product/{id}', function(string $id){
     return "Product $id";
 });
 
 // 2 parameter route
+// required parameter
 Route::get('{lang}/product/{id}', function(string $lang, string $id){
     return "Product $id in $lang";
 });
 
 // optional parameter route
 // it mean the parameter is optional
+// but have to assign null default to $category otherwise it will throw error
 Route::get('/product/{category?}', function(string $category = null){
    return "Product $category";
 });
