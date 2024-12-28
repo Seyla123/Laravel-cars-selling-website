@@ -17,4 +17,15 @@
     'color' => 'red',
     'title' => 'Click me'
 ])
+@php
+    $cars = ['toyota', 'mazda', 'bmw'];
+@endphp
+<h1>Sub view inside loop</h1>
+@foreach ($cars as $car )
+    @include('shared.cars', ['car' => $car])
+@endforeach
+
+<p>using same </p>
+
+@each('shared.cars',$cars ,'car' )
 
