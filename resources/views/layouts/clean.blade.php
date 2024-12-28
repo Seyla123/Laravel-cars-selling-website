@@ -22,6 +22,15 @@
 <body @isset($cssClass)class="{{ $cssClass }}"@endisset>
     {{-- content render here --}}
     @yield('childContent')
+    
+    @hasSection('footerLinks')
+    <footer>
+        @section('footerLinks')
+
+        @show
+    </footer>
+
+    @endif
 </body>
 
 </html>

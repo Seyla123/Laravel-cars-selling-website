@@ -10,6 +10,7 @@
             {{-- form content --}}
             @yield('formContent')
 
+        
         </div>
     </div>
 @endsection
