@@ -2,9 +2,15 @@
 
 @section('childContent')
 <div class="min-h-screen bg-gray-100">
-    <header>My Header</header>
+
+    {{-- header --}}
+    @include('layouts.partials.header')
+
     {{-- content render here --}}
     @yield('content')
-    <footer>My Footer</footer>
+
+    {{-- footer --}}
+    @include('layouts.partials.footer')
+
 </div>
 @endsection
