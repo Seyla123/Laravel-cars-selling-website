@@ -6,7 +6,12 @@
 
 {{-- start the content --}}
 @section('content')
-<x-card />
+<x-button >
+    submit button
+</x-button>
+<x-button >
+    another button
+</x-button>
 <x-auth.form-title />
     <h1>Home Page</h1>
 <x-button />
