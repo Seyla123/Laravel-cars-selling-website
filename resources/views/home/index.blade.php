@@ -18,7 +18,7 @@
     'title' => 'Click me'
 ])
 @php
-    $cars = ['toyota', 'mazda', 'bmw'];
+    $cars = [];
 @endphp
 <h1>Sub view inside loop</h1>
 @foreach ($cars as $car )
@@ -27,5 +27,5 @@
 
 <p>using same </p>
 
-@each('shared.cars',$cars ,'car' )
+@each('shared.cars',$cars ,'car', 'shared.empty')
 
