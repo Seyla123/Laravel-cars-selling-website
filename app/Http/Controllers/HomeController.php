@@ -15,6 +15,7 @@ class HomeController extends Controller
         // ]);
         return view('home.index')
         ->with('name','seav seyla')
-        ->with('age',21);
+        ->with('age',21)
+        ->with('hobbies', ['sports', 'music', 'movies']);
     }
 }
