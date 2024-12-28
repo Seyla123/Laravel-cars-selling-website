@@ -3,7 +3,7 @@
     'authFormTitle' => 'Getting Started with Us'
 ])
 
-@section('content')
+@section('formContent')
 <form>
     <div class="space-y-6">
       <div>

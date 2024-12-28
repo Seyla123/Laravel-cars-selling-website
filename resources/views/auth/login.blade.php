@@ -1,9 +1,9 @@
 @extends('auth.layouts.auth-layouts',[
-    'title' => 'Signup Page',
-    'authFormTitle' => 'Getting Started with Us'
+    'title' => 'Login Page',
+    'authFormTitle' => 'Welcome Back'
 ])
 
-@section('content')
+@section('formContent')
 <form>
     <div class="space-y-6">
       <div>
@@ -29,7 +29,7 @@
         Create an account
       </button>
     </div>
-    <p class="text-gray-800 text-sm mt-6 text-center">Already have an account? <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
+    <p class="text-gray-800 text-sm mt-6 text-center">Don't have an account yet? <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">signup here</a></p>
   </form>
 @endsection
 
