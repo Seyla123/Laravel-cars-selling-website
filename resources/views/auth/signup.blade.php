@@ -29,7 +29,6 @@
                         {{-- signup button --}}
                         <x-button
                             type="submit"
-                            class="additional-classes"
                             title="Create an account"
                         />
                     </div>
