@@ -9,7 +9,7 @@
                     <span class="text-main-600">Explore</span>
                     Land and Sea Like Never Before
                 </h1>
-                <p class="text-gray-600 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+                <p class="text-gray-600 text-lg">Get the best deals on cars, from sedans to SUVs. Find your dream car today!</p>
                 <div class="max-w-sm flex gap-2">
                     <x-button title="Sell Car" />
                     <x-button title="Buy Car"
@@ -22,5 +22,5 @@
             <img src="{{ asset('/assets/images/car.png') }}" alt="cars" srcset="">
         </div>
     </div>
-
 </section>
+
