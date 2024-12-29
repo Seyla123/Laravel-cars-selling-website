@@ -6,8 +6,8 @@
     </div>
     <div class="hidden md:flex">
         <ul class="flex items-center space-x-4">
+            {{-- add new car --}}
             <li>
-
                 <a href="/" class="text-gray-800 hover:text-gray-600">
 
                     <x-button title="Add new car"
@@ -19,14 +19,16 @@
                 </a>
             </li>
             <li>
+                {{-- dropdown my account --}}
                 <x-dropdown>
                     My account
+                    <svg data-lucide="chevron-down" class="w-6 h-6 "></svg>
                     <x-slot:dropdownContent>
-                        <ul class="py-2 text-sm text-gray-700 dark:text-main-200" aria-labelledby="dropdownDefaultButton">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-main-200 " aria-labelledby="dropdownDefaultButton">
                             @foreach (['My Cars', 'My Favourites Cars', 'Logout'] as $item)
                                 <li>
                                     <a href="#"
-                                        customClass="block px-4 py-2 hover:bg-main-100 text-main-600 dark:hover:bg-main-600 dark:hover:text-purple-200">{{ $item }}</a>
+                                        class="block px-4 py-2 hover:bg-main-100   dark:hover:text-purple-200">{{ $item }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -34,6 +36,7 @@
                 </x-dropdown>
             </li>
             <li>
+                {{-- signup --}}
                 <a href="/signup">
                     <x-button title="Signup" class="duration-300 rounded-full w-full py-4 px-7 flex gap-2 items-center ">
                         <x-slot:leftIcon>
@@ -43,6 +46,7 @@
                 </a>
             </li>
             <li>
+                {{-- login --}}
                 <a href="/login">
                     <x-button title="Login" customClass="bg-white duration-300  flex gap-2 items-center hover:px-1  hover:text-main-700 hover:font-bold group">
                         <x-slot:leftIcon>
