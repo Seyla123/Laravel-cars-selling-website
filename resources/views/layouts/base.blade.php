@@ -16,8 +16,8 @@
 
     <!-- Scripts -->
     {{-- tailwind --}}
-    @vite('resources/css/app.css')
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <script src="https://cdn.tailwindcss.com"></script> 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body @if($bodyClass)class="{{ $bodyClass }}"@endif>
