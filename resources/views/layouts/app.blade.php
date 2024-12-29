@@ -1,4 +1,5 @@
-<x-base-layout>
+@props(['title'=>'Seyla'])
+<x-base-layout :$title>
     <div>
         {{-- header --}}
         @include('layouts.partials.header')
