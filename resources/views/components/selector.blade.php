@@ -1,0 +1,21 @@
+@props([
+    'data'=>[
+        '' => '',
+],
+    'name'=>'',
+    'placeholder'=>'-- Select --'])
+<div class="relative w-full">
+    <select class="block appearance-none w-full px-4 py-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500" name="{{ $name }}">
+        <option value="" disabled selected hidden>{{ $placeholder }} </option>
+        <option value="all">All</option>
+        @empty(!$data)
+            @foreach ($data as $key => $value)
+                <option value="{{ $value }}">{{ $key }}</option>
+            @endforeach
+        @endempty
+    </select>
+    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+        <svg data-lucide="chevron-down" class="w-4 h-4 "></svg>
+    </div>
+</div>
+

@@ -1,7 +1,7 @@
-<section class="flex flex-col sm:flex-row sm:justify-between h-[calc(90vh-56px)] bg-no-repeat bg-center bg-cover"
+<section class="flex flex-col sm:flex-row sm:justify-between h-[calc(100vh-100px)] max-h-[1000px] bg-no-repeat bg-center bg-cover"
     style="background-image: url({{ asset('assets/images/home-background.jpg') }})">
 
-    <div class="max-w-screen-2xl mx-auto flex items-center">
+    <div class="max-w-screen-2xl mx-auto flex items-center flex-col sm:flex-row">
         {{-- title --}}
         <div class="flex flex-col justify-center p-8 ">
             <div class="space-y-4">
