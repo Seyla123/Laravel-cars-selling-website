@@ -1,6 +1,6 @@
 <x-base-layout title="Signup">
     {{-- auth layout form --}}
-    <x-auth.auth-layout-form title="Getting Started with Us">
+    <x-auth-layout title="Getting Started with Us">
                     {{-- form content --}}
                     <form>
                         <div class="space-y-6">
@@ -32,7 +32,7 @@
                         </div>
                         <p class="text-gray-800 text-sm mt-6 text-center">Already have an account? <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
                     </form>
-    </x-auth.auth-layout-form>
+    </x-auth-layout>
 </x-base-layout>
 
 

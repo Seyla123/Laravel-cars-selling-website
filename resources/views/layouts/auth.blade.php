@@ -3,7 +3,7 @@
     <div class="max-w-md w-full mx-auto border border-gray-300 rounded-2xl p-8">
 
         {{-- form header logo and title --}}
-        <x-auth.auth-header-form :$title />
+        <x-auth.header-form :$title />
 
         {{-- form content --}}
         {{ $slot }}
