@@ -1,16 +1,13 @@
-@extends('layouts.clean')
+<x-base-layout>
+    <div>
+        {{-- header --}}
+        @include('layouts.partials.header')
 
-@section('childContent')
-<div>
+        {{-- content render here --}}
+        {{ $slot }}
 
-    {{-- header --}}
-    @include('layouts.partials.header')
+        {{-- footer --}}
+        @include('layouts.partials.footer')
 
-    {{-- content render here --}}
-    @yield('content')
-
-    {{-- footer --}}
-    @include('layouts.partials.footer')
-
-</div>
-@endsection
+    </div>
+</x-base-layout>

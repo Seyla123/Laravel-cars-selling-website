@@ -1,3 +1,4 @@
+@props(['bodyClass'=>'', 'title'=> 'Seav Seyla'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -7,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>@yield('title') | {{ config('app.name', 'Car Selling Website') }}</title>
+    <title>{{ $title }} | {{ config('app.name', 'Car Selling Website') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -19,17 +20,15 @@
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
-<body @isset($cssClass)class="{{ $cssClass }}"@endisset>
+<body @if($bodyClass)class="{{ $bodyClass }}"@endif>
     {{-- content render here --}}
-    @yield('childContent')
-    
+    {{ $slot }}
     @hasSection('footerLinks')
-    <footer>
-        @section('footerLinks')
+        <footer>
+            @section('footerLinks')
 
-        @show
-    </footer>
-
+            @show
+        </footer>
     @endif
 </body>
 
