@@ -1,7 +1,7 @@
 @php
     $data = ["cars" => "Cars", "boats" => "Boats", "trucks" => "Trucks", "motorcycles" => "Motorcycles"]
 @endphp
-<form action="/search" method="GET" class="flex flex-col md:flex-row bg-white rounded-md p-4 w-full gap-4">
+<form action="/search" method="GET" class="flex flex-col md:flex-row bg-white rounded-md p-4 w-full gap-4 z-10">
 <div class="grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-5 gap-4 w-full" >
 
     <x-selector

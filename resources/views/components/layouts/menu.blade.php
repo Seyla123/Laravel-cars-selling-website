@@ -5,7 +5,7 @@
             <a href="/" class="text-gray-800 hover:text-gray-600">
 
                 <x-button title="Add new car"
-                    customClass="duration-500 flex gap-2 items-center w-full py-3 px-6  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-full  ">
+                    customClass="duration-500 flex gap-2 items-center w-full py-3 px-6  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-full transition-transform transform hover:scale-110 animate-spin-slow ">
                     <x-slot:leftIcon>
                         <svg data-lucide="circle-plus" class="w-6 h-6 "></svg>
                     </x-slot:leftIcon>
@@ -32,7 +32,7 @@
         <li>
             {{-- signup --}}
             <a href="/signup">
-                <x-button title="Signup" class="duration-300 rounded-full w-full py-4 px-7 flex gap-2 items-center ">
+                <x-button title="Signup" class="duration-500 rounded-full w-full py-4 px-7 flex gap-2 items-center transition-transform transform hover:scale-110 animate-spin-slow ">
                     <x-slot:leftIcon>
                         <svg data-lucide="user-plus" class="w-5 h-5 "></svg>
                     </x-slot:leftIcon>
