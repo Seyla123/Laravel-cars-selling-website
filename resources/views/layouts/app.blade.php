@@ -2,7 +2,7 @@
 <x-base-layout :$title>
     <div>
         {{-- header --}}
-        @include('layouts.partials.header')
+        <x-layouts.header/>
 
         {{-- content render here --}}
         {{ $slot }}
