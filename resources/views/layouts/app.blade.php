@@ -14,5 +14,6 @@
             {{$footerLinks}}
         </footer>
 
+
     </div>
 </x-base-layout>

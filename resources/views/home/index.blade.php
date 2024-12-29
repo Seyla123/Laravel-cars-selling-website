@@ -1,7 +1,7 @@
 <x-app-layout title="Home">
-    <h1>This is Home Page</h1>
-    <div class="h-[1000px]">
-        asdjfasd
+    <x-home.hero-section/>
+    <div class="h-[500px] bg-slate-100 px-12 py-4">
+        content
     </div>
     <x-slot:footerLinks>
         <a href="#">Link 3</a>
