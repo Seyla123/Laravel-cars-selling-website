@@ -22,16 +22,22 @@
                               I accept the <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Terms and Conditions</a>
                             </label>
                           </div>
-
                         </div>
-
-                        <div class="!mt-12">
-                          <button type="button" class="w-full py-3 px-4 text-sm tracking-wider font-semibold rounded-md text-white bg-main-600 hover:bg-main-700 focus:outline-none">
-                            Create an account
-                          </button>
-                        </div>
-                        <p class="text-gray-800 text-sm mt-6 text-center">Already have an account? <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
                     </form>
+
+                    <div class="!mt-12">
+                        {{-- signup button --}}
+                        <x-button
+                            type="submit"
+                            class="additional-classes"
+                            title="Create an account"
+                        />
+                    </div>
+                    <p class="text-gray-800 text-sm mt-6 text-center">Already have an account?
+                        <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">
+                            Login here
+                        </a>
+                    </p>
     </x-auth-layout>
 </x-base-layout>
 
