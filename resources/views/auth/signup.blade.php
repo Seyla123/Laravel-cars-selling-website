@@ -16,12 +16,8 @@
                             <label class="text-gray-800 text-sm mb-2 block">Confirm Password</label>
                             <input name="cpassword" type="password" class="text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-main-400" placeholder="Enter confirm password" />
                           </div>
-                          <div class="flex items-center">
-                            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 shrink-0 text-main-600 focus:ring-main-300 border-gray-300 rounded" />
-                            <label for="remember-me" class="text-gray-800 ml-3 block text-sm">
-                              I accept the <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">Terms and Conditions</a>
-                            </label>
-                          </div>
+                          {{-- check term condition --}}
+                          <x-check-term/>
                         </div>
                     </form>
 
