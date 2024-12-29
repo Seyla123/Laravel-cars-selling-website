@@ -1,10 +1,11 @@
-<div class="w-[300px] border h-[400px] flex flex-col rounded-lg">
+
+<div class="w-full min-w-[200px] max-w- border h-full  flex flex-col rounded-lg bg-white">
     {{-- image --}}
    <div class="bg-gray-200">
       <img src="{{ asset('/assets/images/car.png') }}" alt="cars" srcset="">
    </div>
    {{-- details --}}
-   <div class="p-4 space-y-2">
+   <div class="p-4 space-y-2 flex justify-between flex-col">
     {{-- location and favorite --}}
     <div class="flex items-center justify-between ">
         <p>Lorem ipsum dolor</p>
@@ -14,7 +15,7 @@
     </div>
     {{-- name --}}
     <h1>2024 - Lexus RX350</h1>
-    <p>Lorem ipsum dolor sit amet</p>
+    <p>$50000</p>
     <div>
         <hr class="border-t-1 border-gray-300 my-2">
         <button class="bg-gray-200 py-2 px-3 text-sm rounded-md">
