@@ -5,7 +5,7 @@
     <ul class="flex items-center space-x-4">
         {{-- add new car --}}
         <li>
-            <a href="/" class="text-gray-800 hover:text-gray-600">
+            <a href="{{ route('car.create') }}" class="text-gray-800 hover:text-gray-600">
 
                 <x-button title="Add new car"
                     customClass="duration-500 flex gap-2 items-center w-full py-3 px-6  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-full transition-transform transform hover:scale-110 animate-spin-slow ">

@@ -12,7 +12,7 @@
        <div class="h-full flex flex-col items-center justify-center">
         <ul class="flex flex-col items-center justify-between p-6 gap-3">
             <li>
-                <a href="/" class="text-gray-800 hover:text-gray-600">Add new car</a>
+                <a href="{{ route('car.create') }}" class="text-gray-800 hover:text-gray-600">Add new car</a>
             </li>
             <li>
                 <details class="group flex items-center flex-col">
