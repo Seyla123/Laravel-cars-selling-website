@@ -1,3 +1,6 @@
+@props([
+    'myAccountData'=>['My Cars' => 'car.index', 'My Favourites Cars' => 'signup', 'Logout' => 'signup']
+])
 <div class="block md:hidden">
     <svg data-lucide="align-justify" class="w-8 h-8 group cursor-pointer" onclick="toggleMenu()"></svg>
 </div>
@@ -18,9 +21,9 @@
                         <svg data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-500 group-open:rotate-180"></svg>
                     </summary>
                     <ul class="text-sm text-gray-700 mt-2">
-                        @foreach (['My Cars', 'My Favourites Cars', 'Logout'] as $item)
+                        @foreach ($myAccountData as $item => $value)
                             <li class="group-open:block hidden">
-                                <a href="#"
+                                <a href="{{route($value)}}"
                                     class="text-gray-800 hover:text-gray-600">{{ $item }}</a>
                             </li>
                         @endforeach

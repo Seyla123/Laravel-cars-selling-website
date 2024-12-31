@@ -1,4 +1,7 @@
-<div class="hidden md:flex">
+@props([
+    'myAccountData'=>['My Cars' => 'car.index', 'My Favourites Cars' => 'signup', 'Logout' => 'signup']
+])
+<div class="hidden md:flex z-10">
     <ul class="flex items-center space-x-4">
         {{-- add new car --}}
         <li>
@@ -19,10 +22,10 @@
                 <svg data-lucide="chevron-down" class="w-6 h-6 "></svg>
                 <x-slot:dropdownContent>
                     <ul class="py-2 text-sm text-gray-700 dark:text-main-200 " aria-labelledby="dropdownDefaultButton">
-                        @foreach (['My Cars', 'My Favourites Cars', 'Logout'] as $item)
+                        @foreach ($myAccountData as $item => $value)
                             <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-main-100   dark:hover:text-purple-200">{{ $item }}</a>
+                                <a href="{{ route($value) }}"
+                                    class="block px-4 py-2 hover:bg-main-100 dark:hover:text-purple-200">{{ $item }}</a>
                             </li>
                         @endforeach
                     </ul>
