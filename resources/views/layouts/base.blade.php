@@ -20,16 +20,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body @if($bodyClass)class="{{ $bodyClass }}"@endif>
+<body @if($bodyClass)class="{{ $bodyClass }}"@endif >
     {{-- content render here --}}
     {{ $slot }}
-    @hasSection('footerLinks')
-        <footer>
-            @section('footerLinks')
-
-            @show
-        </footer>
-    @endif
 </body>
 
 </html>

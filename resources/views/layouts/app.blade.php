@@ -1,15 +1,12 @@
 @props(['title'=>'Seyla', 'footerLinks'=>''])
-<x-base-layout :$title>
-    <div>
-        {{-- header --}}
+<x-base-layout :$title bodyClass="bg-slate-100 flex flex-col min-h-screen">
+            {{-- header --}}
         <x-layouts.header/>
 
-        {{-- content render here --}}
-        {{ $slot }}
+         {{-- content render here --}}
+            {{ $slot }}
 
-        {{-- footer --}}
+         {{-- footer --}}
+
         <x-layouts.footer />
-
-
-    </div>
 </x-base-layout>
