@@ -7,7 +7,8 @@
                 <h1 class="text-3xl font-bold py-4 md:py-6 ">Lastest Added Cars</h1>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     @foreach ($cars as $key => $value)
-                    <x-car-card
+                    <a href="{{ route('car.show', $value['id']) }}">
+                        <x-car-card
                         :name="$value['name']"
                         :year="$value['year']"
                         :price="$value['price']"
@@ -15,6 +16,7 @@
                         :type="$value['type']"
                         :favorite="$value['favorite']"
                     />
+                    </a>
                     @endforeach
                 </div>
                 {{-- pagination --}}

@@ -31,7 +31,7 @@
         {{-- main --}}
         <section class="flex flex-col md:flex-row gap-4">
             {{-- search --}}
-            <div class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
+            <form action="{{ route('car.search') }}" method="GET" class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
                 {{-- total result search --}}
                 <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg">
                     <h1 class="text-xl  md:text-nowrap ">Total Result: <span class="font-bold">5000</span> Cars</h1>
@@ -67,14 +67,16 @@
                         <x-button title="Search" type="submit" />
                     </div>
                 </div>
-            </div>
+            </form>
             {{-- cars result --}}
 
             <div class="flex gap-2 md:gap-6 flex-col">
                 <div class="grid grid-cols-2 gap-4">
                     @foreach ($cars as $key => $value)
+                    <a href="{{ route('car.show', $value['id']) }}">
                         <x-car-card :name="$value['name']" :year="$value['year']" :price="$value['price']" :location="$value['location']"
-                            :type="$value['type']" :favorite="$value['favorite']" />
+                        :type="$value['type']" :favorite="$value['favorite']" />
+                    </a>
                     @endforeach
                 </div>
                 {{-- pagination --}}
