@@ -33,7 +33,7 @@
             {{-- search --}}
             <div class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
                 {{-- total result search --}}
-                <div class="p-4 border border-dashed border-gray-300 rounded-lg">
+                <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg">
                     <h1 class="text-xl  md:text-nowrap ">Total Result: <span class="font-bold">5000</span> Cars</h1>
                 </div>
                 {{-- categories search --}}
@@ -42,11 +42,30 @@
                     <x-selector name="Maker" placeholder="Maker" label="Maker" :$data />
                     <x-selector name="Model" placeholder="Model" label="Model" :$data />
                     <x-selector name="type" placeholder="Type" :data="$data" label="Type" />
-                    <x-selector name="Year" placeholder="Year" label="Year" :$data />
+                    <div>
+                        <h1 class="text-sm mb-2 block font-medium">Year</h1>
+                        <div class="flex gap-2 ">
+                            <x-input-field name="yearFrom" placeholder="Year from" />
+                            <x-input-field name="yearTo" placeholder="Year to" />
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-sm mb-2 block font-medium">Price</h1>
+                        <div class="flex gap-2 ">
+                            <x-input-field name="priceFrom" placeholder="Price from" />
+                            <x-input-field name="priceTo" placeholder="Price to" />
+                        </div>
+                    </div>
+                    <x-selector name="mileage" placeholder="Any Mileage" :data="$data" label="Mileage" />
                     <x-selector name="state" placeholder="State/Region" :data="$data" label="State/Region" />
                     <x-selector name="city" placeholder="City" :data="$data" label="City" />
-
-
+                    <x-selector name="fuelType" placeholder="Fuel Type" :data="$data" label="Fuel Type" />
+                    {{-- submit and reset --}}
+                    <div class="flex gap-2">
+                        <x-button title="Reset"
+                            customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
+                        <x-button title="Search" type="submit" />
+                    </div>
                 </div>
             </div>
             {{-- cars result --}}
