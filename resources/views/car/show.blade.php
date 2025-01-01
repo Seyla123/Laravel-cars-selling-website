@@ -7,32 +7,31 @@
         </div>
         <div class="flex gap-8 flex-col xl:flex-row ">
             {{-- lelf side --}}
-
             {{-- image details --}}
             <div
-                class="duration-500  flex gap-2 max-h-[300px] md:max-h-[500px] lg:max-h-[600px] h-full w-full transition-all ease-in-out">
+                class="duration-500  flex flex-col md:flex-row gap-2  md:max-h-[500px] lg:max-h-[600px] h-full w-full transition-all ease-in-out">
                 {{-- big image --}}
                 <div class="rounded-lg overflow-hidden hover:shadow-xl hover:scale-110 duration-500">
                     <img class="w-full h-full object-cover duration-500 ease-in-out rounded-lg"
                         src="{{ asset('assets/images/car2.webp') }}" alt="">
                 </div>
                 {{-- small images --}}
-                <div class="flex flex-col gap-1 w-full max-w-[200px] overflow-y-auto ">
+                <div class="flex flex-row md:flex-col gap-1 w-full md:max-w-[200px] overflow-y-auto ">
                     @for ($i = 0; $i < 20; $i++)
                         <div class=" bg-gray-200 rounded-lg shadow-sm">
-                            <img class=" w-44 rounded-lg  hover:scale-110  duration-500 ease-in-out"
+                            <img class="h-32 min-w-32 md:w-44 rounded-lg  hover:scale-110  duration-500 ease-in-out"
                                 src="{{ asset('assets/images/car.png') }}" alt="">
                         </div>
                     @endfor
                 </div>
-
             </div>
 
             {{-- right side --}}
             @php
                 $favorite = false;
             @endphp
-            <div class="bg-white rounded-lg p-4 md:p-8 xl:max-w-[500px] w-full h-full ">
+            <div class="bg-white rounded-lg p-4 md:p-8 xl:max-w-[500px] w-full flex flex-col justify-between ">
+                {{-- car price and favorite --}}
                 <div class="flex items-center justify-between ">
                     <h1 class="text-3xl font-bold py-4  ">$25000</h1>
                     <button
@@ -52,8 +51,8 @@
                         'Fuel Type' => 'Gasoline',
                     ];
                 @endphp
-
-                <div class="flex flex-col space-y-2 py-4">
+                {{-- car details --}}
+                <div class="flex flex-col space-y-2 py-4 ">
                     @foreach ($carDetails as $key => $detail)
                         <div class="flex items-center text-xl justify-between">
                             <div class="text-gray-600 w-full">{{ $key }}:</div>
@@ -62,6 +61,7 @@
                     @endforeach
                 </div>
                 <hr>
+                {{-- profile details --}}
                 <div class="flex items-center space-x-4 w-full py-4">
                     <img src="{{ asset('assets/images/profile.png') }}" alt="Profile" class="w-12 h-12 rounded-full">
                     <div class="flex flex-col">
@@ -69,6 +69,7 @@
                         <p class="text-sm text-gray-500">Total Cars: 5</p>
                     </div>
                 </div>
+                {{-- contact --}}
                 <div
                     class="flex justify-between border-2 border-main-400 p-4 max-w-[600px]  items-center rounded-3xl bg-white shadow-sm hover:shadow-lg duration-500">
                     <svg data-lucide="phone" class="w-6 h-6 text-main-500"></svg>
