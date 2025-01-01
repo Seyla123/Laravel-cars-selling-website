@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Car extends Model
 {
     use SoftDeletes;
+    protected $fillable = [
+        'maker_id',
+        'model_id',
+        'year',
+        'color',
+        'price',
+        'vin',
+        'mileage',
+        'car_type_id',
+        'fuel_type_id',
+        'user_id',
+        'city_id',
+        'address',
+        'phone',
+        'description',
+        'published_at',
+     ];
 }
