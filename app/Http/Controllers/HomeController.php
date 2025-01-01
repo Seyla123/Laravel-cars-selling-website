@@ -79,7 +79,6 @@ class HomeController extends Controller
         );
         return view('home.index', [
             'cars' => $cars,
-            'car' => $car
         ]);
     }
 }
