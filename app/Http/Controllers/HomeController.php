@@ -2,12 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+
 class HomeController extends Controller
 {
 
     public function index()
     {
+        // get all
+        // $data = Car::get();
 
+        // $data = Car::where("published_at", "!=", null)->get();
+        // [
+        //     'maker_id' => 1,
+        //     'model_id' => 1,
+        //     'year' => 2024,
+        //     'price' => 50000,
+        //     'vin' => 'ABC123',
+        //     'mileage' => 100,
+        //     'car_type_id' => 1,
+        //     'fuel_type_id' => 1,
+        //     'user_id' => 1,
+        //     'city_id' => 1,
+        //     'address' => '123 Main Street',
+        //     'phone' => '123-456-7890',
+        //     'description' => 'This is a test car',
+        //     'published_at' => now()
+        // ],
+        // [
+        //     'maker_id' => 2,
+        //     'model_id' => 2,
+        //     'year' => 2023,
+        //     'price' => 30000,
+        //     'vin' => 'XYZ456',
+        //     'mileage' => 500,
+        //     'car_type_id' => 2,
+        //     'fuel_type_id' => 2,
+        //     'user_id' => 2,
+        //     'city_id' => 2,
+        //     'address' => '456 Elm Street',
+        //     'phone' => '987-654-3210',
+        //     'description' => 'This is a test car',
+        //     'published_at' => now()
+        // ],
+    //    $dataInput =  [
+    //     'maker_id' => 3,
+    //     'model_id' => 3,
+    //     'year' => 2022,
+    //     'price' => 28000,
+    //     'vin' => 'QWE789',
+    //     'mileage' => 1000,
+    //     'car_type_id' => 3,
+    //     'fuel_type_id' => 3,
+    //     'user_id' => 3,
+    //     'city_id' => 3,
+    //     'address' => '789 Oak Street',
+    //     'phone' => '555-555-5555',
+    //     'description' => 'This is a test car',
+    //     'published_at' => now()
+    //    ];
+    //     // $data = Car::create($dataInput);
+    //     // dump($data);
+
+    //     $car = Car::all();
         $cars = array(
             ['id' => 1, 'image' => '/assets/images/car1.png', 'name' => 'Lexus RX350', 'year' => '2024', 'price' => '50000', 'location' => 'California', 'type' => ['SUV', 'Hybrid'], 'favorite' => false],
             ['id' => 2, 'image' => '/assets/images/car2.png', 'name' => 'Toyota Camry', 'year' => '2023', 'price' => '30000', 'location' => 'Texas', 'type' => ['Sedan', 'Gas'], 'favorite' => true],
@@ -21,7 +78,8 @@ class HomeController extends Controller
             ['id' => 10, 'image' => '/assets/images/car10.png', 'name' => 'Nissan Altima', 'year' => '2023', 'price' => '25000', 'location' => 'Ohio', 'type' => ['Sedan', 'Gas'], 'favorite' => false],
         );
         return view('home.index', [
-            'cars' => $cars
+            'cars' => $cars,
+            'car' => $car
         ]);
     }
 }
