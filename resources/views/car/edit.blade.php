@@ -69,12 +69,20 @@
                         <x-selector name="state" placeholder="Stae/Region" label="Stae/Region" :$data/>
                         <x-selector name="city" placeholder="City" label="City" :$data/>
                     </div>
+                    {{-- submit and reset big screen--}}
+                    <div class="hidden xl:flex  w-full  items-center justify-end">
+                        <div class="max-w-[300px] flex w-full gap-4">
+                            <x-button title="Reset"
+                            customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
+                            <x-button title="Update"  type="submit"/>
+                        </div>
+                    </div>
 
                 </div>
                 <span class="bg-gray-200 w-[2px]"></span>
                 {{-- image upload --}}
                 <div class=" border border-dashed border-gray-300 rounded-lg p-4 w-full xl:max-w-[500px] max-h-[200px]">
-
+                    {{-- image upload --}}
                     <div class="flex flex-col justify-center w-full items-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 h-full">
                         <label for="images" class="flex flex-col items-center justify-center w-full h-full">
                             <svg data-lucide="image" class="w-12 h-12 text-gray-400"></svg>
@@ -83,6 +91,7 @@
                             <input type="file" name="images[]" id="images" multiple class="hidden">
                         </label>
                     </div>
+                    {{-- image preview --}}
                     <ul id="images-preview" class="flex flex-wrap gap-4 mt-4">
                     </ul>
                     <script>
@@ -94,7 +103,7 @@
                             for (const file of files) {
                                 const fileReader = new FileReader();
                                 fileReader.onload = (e) => {
-                                    const container = document.createElement('div');
+                                    const container = document.UpdateElement('div');
                                     container.className = "relative";
                                     container.innerHTML = `
                                         <img src="${e.target.result}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
@@ -111,6 +120,13 @@
                             }
                         });
                     </script>
+                </div>
+                <div class="flex xl:hidden  w-full  items-center justify-center sm:justify-end">
+                    <div class="sm:max-w-[300px] flex w-full gap-4">
+                        <x-button title="Reset"
+                        customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
+                        <x-button title="Create"  type="submit"/>
+                    </div>
                 </div>
             </form>
         </div>
