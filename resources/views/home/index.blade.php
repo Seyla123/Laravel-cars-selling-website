@@ -20,7 +20,7 @@
                     @endforeach
                 </div>
                 {{-- pagination --}}
-                <div class="bg-white dark:bg-gray-800 flex justify-center items-center py-2 md:py-4 rounded-lg">
+                <div class="bg-white flex justify-center items-center py-2 md:py-4 rounded-lg">
                     <x-pagination totalPage="5" selectedPage="1" />
                 </div>
             </section>
