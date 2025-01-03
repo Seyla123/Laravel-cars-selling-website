@@ -43,7 +43,7 @@ class Car extends Model
    }
    public function model(): BelongsTo
    {
-      return $this->belongsTo(Model::class);
+      return $this->belongsTo(\App\Models\Model::class);
    }
    public function city(): BelongsTo
    {

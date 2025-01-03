@@ -2,97 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Car;
-use App\Models\User;
-use App\Models\CarImage;
-use App\Models\CarType;
+use App\Models\Maker;
+use App\Models\Model;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
-        // get all
-        // $data = Car::get();
+        
 
-        // $data = Car::where("published_at", "!=", null)->get();
-        // [
-        //     'maker_id' => 1,
-        //     'model_id' => 1,
-        //     'year' => 2024,
-        //     'price' => 50000,
-        //     'vin' => 'ABC123',
-        //     'mileage' => 100,
-        //     'car_type_id' => 1,
-        //     'fuel_type_id' => 1,
-        //     'user_id' => 1,
-        //     'city_id' => 1,
-        //     'address' => '123 Main Street',
-        //     'phone' => '123-456-7890',
-        //     'description' => 'This is a test car',
-        //     'published_at' => now()
-        // ],
-        // [
-        //     'maker_id' => 2,
-        //     'model_id' => 2,
-        //     'year' => 2023,
-        //     'price' => 30000,
-        //     'vin' => 'XYZ456',
-        //     'mileage' => 500,
-        //     'car_type_id' => 2,
-        //     'fuel_type_id' => 2,
-        //     'user_id' => 2,
-        //     'city_id' => 2,
-        //     'address' => '456 Elm Street',
-        //     'phone' => '987-654-3210',
-        //     'description' => 'This is a test car',
-        //     'published_at' => now()
-        // ],
-    //    $dataInput =  [
-    //     'maker_id' => 3,
-    //     'model_id' => 3,
-    //     'year' => 2022,
-    //     'price' => 28000,
-    //     'vin' => 'QWE789',
-    //     'mileage' => 1000,
-    //     'car_type_id' => 3,
-    //     'fuel_type_id' => 3,
-    //     'user_id' => 3,
-    //     'city_id' => 3,
-    //     'address' => '789 Oak Street',
-    //     'phone' => '555-555-5555',
-    //     'description' => 'This is a test car',
-    //     'published_at' => now()
-    //    ];
-    //     // $data = Car::create($dataInput);
-    //     // dump($data);
-
-    //     $car = Car::all();
-
-    // $cars = Car::find(1);
-    // $image = new CarImage(['image_path'=>'something', 'position'=>4]);
-    // $cars->images()->save($image);
-    // $cars->images()->createMany([
-    //     ['image_path'=>'something', 'position'=>5],
-    //     ['image_path'=>'something', 'position'=>6]
-    // ]);
-    // dump($cars->images);
-    // dd($cars->carType);
-    // $car = Car::find(1);
-    // // $carType = CarType::where('name','type1')->first();
-    
-    // // $car->car_type_id = $carType->id;
-    // // $car->save();
-
-    // // $car->carType()->associate($carType);
-    // // $car->save();
-    // dd($car->favouredUsers);
-
-    // $car = Car::find(1);
-    // $user = User::find(2);
-    // $user->favouriteCars()->detach();
-
-    
+    // $makers =  Maker::factory()
+    //         ->count(1)
+    //         ->hasModels(1,[
+    //             'name' => 'Toyota'
+    //         ])->create();
+    // $makers = Maker::factory()->create();
+    // Model::factory()->count(5)->for($makers)->create();
+    // dd($makers);
         $cars = array(
             ['id' => 1, 'image' => '/assets/images/car1.png', 'name' => 'Lexus RX350', 'year' => '2024', 'price' => '50000', 'location' => 'California', 'type' => ['SUV', 'Hybrid'], 'favorite' => false],
             ['id' => 2, 'image' => '/assets/images/car2.png', 'name' => 'Toyota Camry', 'year' => '2023', 'price' => '30000', 'location' => 'Texas', 'type' => ['Sedan', 'Gas'], 'favorite' => true],
