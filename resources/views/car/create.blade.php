@@ -31,7 +31,7 @@
                             @foreach($carTypes as $carType)
                                 <div class="flex items-center ">
                                     <input id="{{ $carType['id'] }}" type="radio" value="{{ $carType['value'] }}" name="carType" class="hidden peer" />
-                                    <label for="{{ $carType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white dark:border-gray-600 cursor-pointer dark:text-gray-300 dark:peer-checked:bg-blue-600 dark:peer-checked:text-white">
+                                    <label for="{{ $carType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white  cursor-pointer ">
                                         {{ $carType['label'] }}
                                     </label>
                                 </div>
@@ -57,7 +57,7 @@
                             @foreach($fuelTypes as $fuelType)
                                 <div class="flex items-center ">
                                     <input id="{{ $fuelType['id'] }}" type="radio" value="{{ $fuelType['value'] }}" name="fuelType" class="hidden peer" />
-                                    <label for="{{ $fuelType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white dark:border-gray-600 cursor-pointer dark:text-gray-300 dark:peer-checked:bg-blue-600 dark:peer-checked:text-white">
+                                    <label for="{{ $fuelType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white  cursor-pointer ">
                                         {{ $fuelType['label'] }}
                                     </label>
                                 </div>
