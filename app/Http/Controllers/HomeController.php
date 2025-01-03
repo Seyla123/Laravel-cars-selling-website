@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\CarType;
+use App\Models\City;
+use App\Models\FuelType;
 use App\Models\Maker;
 use App\Models\Model;
+use App\Models\State;
+use App\Models\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        
-
-    // $makers =  Maker::factory()
-    //         ->count(1)
-    //         ->hasModels(1,[
-    //             'name' => 'Toyota'
-    //         ])->create();
-    // $makers = Maker::factory()->create();
-    // Model::factory()->count(5)->for($makers)->create();
-    // dd($makers);
         $cars = array(
             ['id' => 1, 'image' => '/assets/images/car1.png', 'name' => 'Lexus RX350', 'year' => '2024', 'price' => '50000', 'location' => 'California', 'type' => ['SUV', 'Hybrid'], 'favorite' => false],
             ['id' => 2, 'image' => '/assets/images/car2.png', 'name' => 'Toyota Camry', 'year' => '2023', 'price' => '30000', 'location' => 'Texas', 'type' => ['Sedan', 'Gas'], 'favorite' => true],
