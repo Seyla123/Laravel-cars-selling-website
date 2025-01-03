@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\User;
+use App\Models\CarImage;
+use App\Models\CarType;
 
 class HomeController extends Controller
 {
@@ -65,6 +68,31 @@ class HomeController extends Controller
     //     // dump($data);
 
     //     $car = Car::all();
+
+    // $cars = Car::find(1);
+    // $image = new CarImage(['image_path'=>'something', 'position'=>4]);
+    // $cars->images()->save($image);
+    // $cars->images()->createMany([
+    //     ['image_path'=>'something', 'position'=>5],
+    //     ['image_path'=>'something', 'position'=>6]
+    // ]);
+    // dump($cars->images);
+    // dd($cars->carType);
+    // $car = Car::find(1);
+    // // $carType = CarType::where('name','type1')->first();
+    
+    // // $car->car_type_id = $carType->id;
+    // // $car->save();
+
+    // // $car->carType()->associate($carType);
+    // // $car->save();
+    // dd($car->favouredUsers);
+
+    // $car = Car::find(1);
+    // $user = User::find(2);
+    // $user->favouriteCars()->detach();
+
+    
         $cars = array(
             ['id' => 1, 'image' => '/assets/images/car1.png', 'name' => 'Lexus RX350', 'year' => '2024', 'price' => '50000', 'location' => 'California', 'type' => ['SUV', 'Hybrid'], 'favorite' => false],
             ['id' => 2, 'image' => '/assets/images/car2.png', 'name' => 'Toyota Camry', 'year' => '2023', 'price' => '30000', 'location' => 'Texas', 'type' => ['Sedan', 'Gas'], 'favorite' => true],
