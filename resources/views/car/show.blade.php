@@ -5,7 +5,7 @@
             <h1 class="text-3xl font-bold ">{{$car->maker->name}} {{$car->model->name}} - {{$car->year}}</h1>
             <p class="text-gray-600">{{$car->city->name}} - {{$car->published_at}}</p>
         </div>
-        <div class="flex gap-8 flex-col xl:flex-row ">
+        <div class="flex gap-4 flex-col xl:flex-row ">
             {{-- lelf side --}}
             {{-- image details --}}
             <div
@@ -96,19 +96,20 @@
             <h1 class="text-xl md:text-2xl font-semibold mt-4">Car Specifications</h1>
             <div>
                 @php
+                $carFeatures=$car->features;
                     $carSpecifications = [
-                        'Air Conditioning' => true,
-                        'Power Windows' => false,
-                        'Power Door Locks' => true,
-                        'ABS' => true,
-                        'Cruise Control' => true,
-                        'Bluetooth Connectivity' => true,
-                        'Remote Start' => true,
-                        'GPS Navigation System' => true,
-                        'Heated Seats' => true,
-                        'Climate Control'   => true,
-                        'Rear Parking Sensors' => true,
-                        'Leather Seats' => true,
+                        'Air Conditioning' => $carFeatures->air_conditioning,
+                        'Power Windows' => $carFeatures->power_windows,
+                        'Power Door Locks' => $carFeatures->power_door_locks,
+                        'ABS' => $carFeatures->abs,
+                        'Cruise Control' => $carFeatures->cruise_control,
+                        'Bluetooth Connectivity' => $carFeatures->bluetooth_connectivity,
+                        'Remote Start' => $carFeatures->remote_start,
+                        'GPS Navigation System' => $carFeatures->gps_navigation,
+                        'Heated Seats' => $carFeatures->heater_seat,
+                        'Climate Control'   => $carFeatures->climate_control,
+                        'Rear Parking Sensors' => $carFeatures->rear_parking_sensors,
+                        'Leather Seats' => $carFeatures->leather_seats,
                     ];
                 @endphp
                 @foreach ($carSpecifications as $key=>$value)
