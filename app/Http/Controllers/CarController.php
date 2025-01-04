@@ -34,9 +34,12 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Car $car)
     {
-        return view('car.show');
+        return view('car.show',[
+           'car'=>$car ,
+           'favorite'=>true
+        ]);
     }
 
     /**
@@ -57,14 +60,8 @@ class CarController extends Controller
 
     public function search(Car $car)
     {
-        $cars2 = array(
-            ['id' => 1, 'image' => '/assets/images/car1.png', 'name' => 'Lexus RX350', 'year' => '2024', 'price' => '50000', 'location' => 'California', 'type' => ['SUV', 'Hybrid'], 'favorite' => false],
-            ['id' => 2, 'image' => '/assets/images/car2.png', 'name' => 'Toyota Camry', 'year' => '2023', 'price' => '30000', 'location' => 'Texas', 'type' => ['Sedan', 'Gas'], 'favorite' => true],
-            ['id' => 3, 'image' => '/assets/images/car3.png', 'name' => 'Honda Accord', 'year' => '2022', 'price' => '28000', 'location' => 'New York', 'type' => ['Sedan', 'Hybrid'], 'favorite' => false],
-            ['id' => 4, 'image' => '/assets/images/car4.png', 'name' => 'Ford F-150', 'year' => '2024', 'price' => '55000', 'location' => 'Florida', 'type' => ['Truck', 'Gas'], 'favorite' => false],
-        );
         $query = Car::where('published_at','<', now())
-                    ->orderBy(('published_at'), 'desc');
+                    ->orderBy('published_at', 'desc');
         $carCount = $query->count();
         $cars = $query->limit(value: 12)->get();
         return view('car.search',[
