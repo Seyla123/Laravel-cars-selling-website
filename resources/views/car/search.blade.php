@@ -34,7 +34,7 @@
             <form action="{{ route('car.search') }}" method="GET" class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
                 {{-- total result search --}}
                 <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg">
-                    <h1 class="text-xl  md:text-nowrap ">Total Result: <span class="font-bold">5000</span> Cars</h1>
+                    <h1 class="text-xl  md:text-nowrap ">Total Result: <span class="font-bold">{{$carCount}}</span> Cars</h1>
                 </div>
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
@@ -70,17 +70,14 @@
             </form>
             {{-- cars result --}}
 
-            <div class="flex gap-2 md:gap-6 flex-col">
-                <div class="grid grid-cols-2 gap-4">
-                    @foreach ($cars as $key => $value)
-                    <a href="{{ route('car.show', $value['id']) }}">
-                        <x-car-card :name="$value['name']" :year="$value['year']" :price="$value['price']" :location="$value['location']"
-                        :type="$value['type']" :favorite="$value['favorite']" />
-                    </a>
+            <div class="flex flex-col gap-2 md:gap-6 justify-between ">
+                <div class="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    @foreach ($cars as $car )
+                        <x-car-card :$car />
                     @endforeach
                 </div>
                 {{-- pagination --}}
-                <div class="bg-white dark:bg-gray-800 flex justify-center items-center py-2 md:py-4 rounded-lg">
+                <div class="bg-white  flex justify-center items-center py-2 md:py-4 rounded-lg">
                     <x-pagination totalPage="5" selectedPage="1" />
                 </div>
             </div>

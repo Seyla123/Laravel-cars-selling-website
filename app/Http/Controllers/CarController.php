@@ -63,8 +63,13 @@ class CarController extends Controller
             ['id' => 3, 'image' => '/assets/images/car3.png', 'name' => 'Honda Accord', 'year' => '2022', 'price' => '28000', 'location' => 'New York', 'type' => ['Sedan', 'Hybrid'], 'favorite' => false],
             ['id' => 4, 'image' => '/assets/images/car4.png', 'name' => 'Ford F-150', 'year' => '2024', 'price' => '55000', 'location' => 'Florida', 'type' => ['Truck', 'Gas'], 'favorite' => false],
         );
+        $query = Car::where('published_at','<', now())
+                    ->orderBy(('published_at'), 'desc');
+        $carCount = $query->count();
+        $cars = $query->limit(value: 12)->get();
         return view('car.search',[
-            'cars' => $cars2
+            'cars'=>$cars,
+            'carCount'=>$carCount
         ]);
     }
 
