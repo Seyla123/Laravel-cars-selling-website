@@ -18,7 +18,9 @@ class ModelFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" =>fake()->word(),
+            "name" => fake()->randomElement([
+                "Camry", "Lexus", "Corolla", "Crown", "4Runner", "Highlander", "RAV4", "Sienna", "Supra", "Tacoma", "Tundra", "Prius", "Avalon", "Mirai", "86", "Land Cruiser", "Yaris", "C-HR", "Corolla Hatchback", "Mirai Fuel Cell", "GR Supra", "Venza"
+            ]),
             "maker_id"=>Maker::inRandomOrder()->first()->id,
         ];
     }
