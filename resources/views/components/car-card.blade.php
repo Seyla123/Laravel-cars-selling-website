@@ -4,7 +4,6 @@
    <div class="bg-gray-200 overflow-hidden rounded-t-lg">
     <a href="{{route('car.show', $car)}}">
     <img src="{{ $car->primaryImage->image_path }}" alt="{{ $car->model->name }} cars" srcset="" class="w-full h-full object-cover transition-all duration-300 transform hover:scale-110">
-    
     </a>
    </div>
    {{-- details --}}
