@@ -27,7 +27,6 @@
                     </button>
                 </div>
                 <hr>
-
                 {{-- car details --}}
                 <x-car-detail :$car/>
                 <hr>
