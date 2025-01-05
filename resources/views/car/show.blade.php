@@ -7,24 +7,13 @@
         </div>
         <div class="flex gap-4 flex-col xl:flex-row ">
             {{-- lelf side --}}
+
             {{-- image details --}}
-            <div
-                class="flex flex-col md:flex-row gap-2  md:max-h-[500px] lg:max-h-[600px] h-full w-full ">
-                {{-- big image --}}
-                <div class="rounded-lg  w-full hover:shadow-xl hover:scale-105 duration-500">
-                    <img class="w-full h-full object-fit rounded-lg"
-                        src="{{ $car->primaryImage->image_path  }}" alt="{{$car->model->name}}">
-                </div>
-                {{-- small images --}}
-                <div class="flex flex-row md:flex-col gap-1 w-full md:max-w-[200px] overflow-y-auto ">
-                    @foreach ($car->images as $image )
-                        <div class=" rounded-lg  w-full  md:w-44 shadow-sm">
-                            <img class="h-32 min-w-32 object-fit w-full rounded-lg  hover:scale-90 overflow-hidden  duration-500 ease-in-out"
-                                src="{{ $image->image_path }}" alt="">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            <x-car-show-image 
+                :primaryImage="$car->primaryImage->image_path" 
+                :images="$car->images" 
+                :imageTitle="$car->model->name" 
+            />
 
             {{-- right side --}}
             <div class="bg-white rounded-lg p-4 md:p-8 xl:max-w-[500px] w-full flex flex-col justify-between ">
