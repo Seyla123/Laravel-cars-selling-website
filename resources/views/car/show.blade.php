@@ -9,17 +9,17 @@
             {{-- lelf side --}}
             {{-- image details --}}
             <div
-                class="duration-500  flex flex-col md:flex-row gap-2  md:max-h-[500px] lg:max-h-[600px] h-full w-full transition-all ease-in-out">
+                class="flex flex-col md:flex-row gap-2  md:max-h-[500px] lg:max-h-[600px] h-full w-full ">
                 {{-- big image --}}
-                <div class="rounded-lg overflow-hidden w-full hover:shadow-xl hover:scale-110 duration-500">
-                    <img class="w-full h-full object-fit duration-500 ease-in-out rounded-lg"
+                <div class="rounded-lg  w-full hover:shadow-xl hover:scale-105 duration-500">
+                    <img class="w-full h-full object-fit rounded-lg"
                         src="{{ $car->primaryImage->image_path  }}" alt="{{$car->model->name}}">
                 </div>
                 {{-- small images --}}
                 <div class="flex flex-row md:flex-col gap-1 w-full md:max-w-[200px] overflow-y-auto ">
                     @foreach ($car->images as $image )
-                        <div class=" bg-gray-200 rounded-lg w-full md:w-44 shadow-sm">
-                            <img class="h-32 min-w-32 object-fit w-full rounded-lg  hover:scale-110  duration-500 ease-in-out"
+                        <div class=" rounded-lg  w-full  md:w-44 shadow-sm">
+                            <img class="h-32 min-w-32 object-fit w-full rounded-lg  hover:scale-90 overflow-hidden  duration-500 ease-in-out"
                                 src="{{ $image->image_path }}" alt="">
                         </div>
                     @endforeach
@@ -82,62 +82,11 @@
 
             </div>
         </div>
-        <div class="bg-white rounded-lg p-4 space-y-4">
-            <h1 class="text-xl md:text-2xl font-semibold mt-4">Detailed Description</h1>
-            <p class="details max-h-[200px] overflow-hidden">
-                {{ $car->description }}
-            </p>
-            <button
-                class="bg-main-500 hover:bg-main-700 flex items-center text-white font-bold py-2 px-4 rounded-full duration-500"
-                id="show-more-details" onclick="toggleDetails()">
-                See More Details            </button>
-        </div>
-        <div class="bg-white rounded-lg p-4 space-y-4">
-            <h1 class="text-xl md:text-2xl font-semibold mt-4">Car Specifications</h1>
-            <div>
-                @php
-                $carFeatures=$car->features;
-                    $carSpecifications = [
-                        'Air Conditioning' => $carFeatures->air_conditioning,
-                        'Power Windows' => $carFeatures->power_windows,
-                        'Power Door Locks' => $carFeatures->power_door_locks,
-                        'ABS' => $carFeatures->abs,
-                        'Cruise Control' => $carFeatures->cruise_control,
-                        'Bluetooth Connectivity' => $carFeatures->bluetooth_connectivity,
-                        'Remote Start' => $carFeatures->remote_start,
-                        'GPS Navigation System' => $carFeatures->gps_navigation,
-                        'Heated Seats' => $carFeatures->heater_seat,
-                        'Climate Control'   => $carFeatures->climate_control,
-                        'Rear Parking Sensors' => $carFeatures->rear_parking_sensors,
-                        'Leather Seats' => $carFeatures->leather_seats,
-                    ];
-                @endphp
-                @foreach ($carSpecifications as $key=>$value)
-                    <div class="flex items-center space-x-4 py-2">
-                        @if ($value)
-                        <svg data-lucide="circle-check" class="w-8 h-8  fill-green-500 text-white"></svg>
-                        @else
-                        <svg data-lucide="circle-minus" class="w-8 h-8  fill-red-500 text-white"></svg>
-                        @endif
-                        <p class="text-lg font-semibold">{{ $key }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-        <script>
-            function toggleDetails() {
-                const details = document.querySelector('.details');
-                const button = document.getElementById('show-more-details');
-                if (details.classList.contains('max-h-[200px]')) {
-                    details.classList.remove('max-h-[200px]', 'overflow-hidden');
-                    button.innerHTML = 'See Less Details ';
-                } else {
-                    details.classList.add('max-h-[200px]', 'overflow-hidden');
-                    button.innerHTML = 'See More Details';
-                }
-            }
-        </script>
+        {{-- car description --}}
+        <x-car-description :carDescription="$car->description"/>
+        
+        {{-- car specifications --}}
+        <x-car-spectification :carFeatures="$car->features" />
     </main>
 
 </x-app-layout>
