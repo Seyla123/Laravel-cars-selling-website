@@ -38,47 +38,19 @@
                     </button>
                 </div>
                 <hr>
-                @php
-                    $carDetails = [
-                        'Maker' => $car->maker->name,
-                        'Model' => $car->model->name,
-                        'Year' => $car->year,
-                        'Price' => '$' . $car->price,
-                        'Mileage' => $car->mileage . ' miles',
-                        'Fuel Type' => $car->fuelType->name,
-                    ];
-                @endphp
+
                 {{-- car details --}}
-                <div class="flex flex-col space-y-2 py-4 ">
-                    @foreach ($carDetails as $key => $detail)
-                        <div class="flex items-center text-xl justify-between">
-                            <div class="text-gray-600 w-full">{{ $key }}:</div>
-                            <div class="w-full">{{ $detail }}</div>
-                        </div>
-                    @endforeach
-                </div>
+                <x-car-detail :$car/>
                 <hr>
+                
                 {{-- profile details --}}
-                <div class="flex items-center space-x-4 w-full py-4">
-                    <img src="{{ asset('assets/images/profile.png') }}" alt="Profile" class="w-12 h-12 rounded-full">
-                    <div class="flex flex-col">
-                        <h1 class="font-semibold">{{$car->owner->name}}</h1>
-                        <p class="text-sm text-gray-500">Total Cars: {{$car->owner->cars()->count()}}</p>
-                    </div>
-                </div>
-                {{-- contact --}}
-                <div
-                    class="flex justify-between border-2 border-main-400 px-4 py-3 max-w-[600px]  items-center rounded-full bg-white shadow-sm hover:shadow-lg duration-500">
-                    <svg data-lucide="phone" class="w-6 h-6 text-main-500"></svg>
-                    <a href="tel:{{\Illuminate\Support\Str::mask($car->phone,'*',-3)}}" class="text-main-500 font-bold flex items-center gap-2">
-                        {{\Illuminate\Support\Str::mask($car->phone,'*',-3)}}
-                    </a>
-                    <button
-                        class="bg-main-500 hover:bg-main-700 flex items-center text-white font-bold py-2 px-4 rounded-full duration-500">
-                        Tap to view
-                        <svg data-lucide="chevron-right" class="w-4 h-4 ml-2"></svg>
-                    </button>
-                </div>
+                <x-car-owner-profile 
+                    :name="$car->owner->name" 
+                    :totalCars="$car->owner->cars()->count()" 
+                />
+
+                {{-- car owner contact --}}
+                <x-car-owner-contact :phone="$car->owner->phone" />
 
             </div>
         </div>
