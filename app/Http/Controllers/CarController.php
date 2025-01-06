@@ -14,9 +14,11 @@ class CarController extends Controller
     public function index()
     {
         $cars = User::find(id: 6)
-                    ->cars()->with(['primaryImage', 'maker', 'model'])
-                    ->orderBy('created_at', 'desc')
-                    ->limit(5)->get();
+            ->cars()
+            ->with(['primaryImage', 'maker', 'model'])
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
         return view('car.index', compact('cars'));
     }
 
@@ -41,9 +43,9 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return view('car.show',[
-           'car'=>$car ,
-           'favorite'=>true
+        return view('car.show', [
+            'car' => $car,
+            'favorite' => true
         ]);
     }
 
@@ -65,15 +67,16 @@ class CarController extends Controller
 
     public function search(Car $car)
     {
+        $query = Car::where('published_at', '<', now())
+            ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
+            ->orderBy('published_at', 'desc');
 
-
-        $query = Car::with('primaryImage','model', 'city', 'maker', 'carType', 'fuelType')
-                    -> where('published_at','<', now())
-                    ->orderBy('published_at', 'desc');
         $carCount = $query->count();
-        $cars = $query->limit(value: 12)->get();
 
-        return view('car.search',compact('cars','carCount'));
+        $cars = $query->paginate(1);
+        // dd($cars[0]);
+
+        return view('car.search', compact('cars', 'carCount'));
     }
 
     /**
@@ -86,11 +89,12 @@ class CarController extends Controller
     public function watchlist()
     {
         $cars = User::find(5)
-                ->favouriteCars()
-                ->with('primaryImage','model', 'city', 'maker', 'carType', 'fuelType')
-                ->where('deleted_at', null)
-                ->limit(10)
-                ->get();
+            ->favouriteCars()
+            ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
+            ->where('deleted_at', null)
+            ->orderBy('published_at', 'desc')
+            ->limit(10)
+            ->get();
         return view('car.watchlist', compact('cars'));
     }
 }
