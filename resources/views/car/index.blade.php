@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($cars as $car)
+                @forelse ($cars as $car)
                     <tr class="border-b border-gray-200">
                         <td class="px-6 py-4">
                             <img src="{{ $car->primaryImage->image_path }}" alt="{{$car->model->name}}" class="max-w-[100px]">
@@ -50,9 +50,15 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                    {{-- when data is empty --}}
+                    @empty
+                    <tr>
+                        <td colspan="5" class="h-[350px] md:h-[500px]  px-6 py-4 text-center">
+                            No cars found. <a href="{{route('car.create')}}" class="text-blue-500">Create Now</a>
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
-
         </table>
         {{-- pagination --}}
         <div class="bg-white  flex justify-center items-center py-2 md:py-4 rounded-lg">

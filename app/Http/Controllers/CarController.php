@@ -13,7 +13,10 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(1)->cars()->orderBy('created_at', 'desc')->limit(5)->get();
+        $cars = User::find(1)
+                    ->cars()->with(['primaryImage', 'maker', 'model'])
+                    ->orderBy('created_at', 'desc')
+                    ->limit(5)->get();
         return view('car.index', compact('cars'));
     }
 
