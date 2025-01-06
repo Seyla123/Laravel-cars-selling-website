@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarType;
+use App\Models\City;
+use App\Models\FuelType;
+use App\Models\Maker;
+use App\Models\Model;
+use App\Models\State;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +32,13 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('car.create');
+        $makers = Maker::get();
+        $models = Model::get();
+        $carTypes = CarType::get();
+        $fuelTypes = FuelType::get();
+        $states = State::get();
+        $cities = City::get();
+        return view('car.create',compact('makers','models', 'carTypes','fuelTypes','states', 'cities'));
     }
 
     /**
@@ -34,7 +46,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-
+        return 'hello word';
     }
 
     /**

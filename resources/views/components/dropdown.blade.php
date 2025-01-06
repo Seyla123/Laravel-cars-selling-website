@@ -1,3 +1,4 @@
+@props(['dropdownContent'=>''])
 <div class="relative">
     <button
         onclick="toggleDropdown()"
