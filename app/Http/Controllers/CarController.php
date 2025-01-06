@@ -83,4 +83,14 @@ class CarController extends Controller
     {
 
     }
+    public function watchlist()
+    {
+        $cars = User::find(5)
+                ->favouriteCars()
+                ->with('primaryImage','model', 'city', 'maker', 'carType', 'fuelType')
+                ->where('deleted_at', null)
+                ->limit(10)
+                ->get();
+        return view('car.watchlist', compact('cars'));
+    }
 }
