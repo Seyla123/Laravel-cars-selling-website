@@ -31,7 +31,7 @@
                             {{ $car->year }} - {{ $car->maker->name }} {{ $car->model->name }}
                         </td>
                         <td class="px-6 py-4 text-center">
-                            {{ $car->created_at }}
+                            {{ $car->getCreatedDate() }}
                         </td>
                         <td class="px-6 py-4 text-center">
                             {{ $car->published ? 'Yes' : 'No' }}
