@@ -69,13 +69,11 @@ class CarController extends Controller
         $query = Car::where('published_at', '<', now())
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->orderBy('published_at', 'desc');
-
-        $carCount = $query->count();
-
+            
         $cars = $query->paginate(1);
         // dd($cars[0]);
 
-        return view('car.search', compact('cars', 'carCount'));
+        return view('car.search', compact('cars'));
     }
 
     /**

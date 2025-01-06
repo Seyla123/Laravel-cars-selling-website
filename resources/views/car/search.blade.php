@@ -36,7 +36,7 @@
                 {{-- total result search --}}
                 <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg">
                     <h1 class="text-xl  md:text-nowrap ">Total Result: <span
-                            class="font-bold">{{ $carCount }}</span> Cars</h1>
+                            class="font-bold">{{ $cars->total() }}</span> Cars</h1>
                 </div>
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
