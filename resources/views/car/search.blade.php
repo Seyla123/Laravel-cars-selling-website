@@ -31,10 +31,12 @@
         {{-- main --}}
         <section class="flex flex-col md:flex-row gap-4">
             {{-- search --}}
-            <form action="{{ route('car.search') }}" method="GET" class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
+            <form action="{{ route('car.search') }}" method="GET"
+                class="md:max-w-[350px] w-full h-full flex flex-col gap-6 bg-white rounded-lg p-4">
                 {{-- total result search --}}
                 <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg">
-                    <h1 class="text-xl  md:text-nowrap ">Total Result: <span class="font-bold">{{$carCount}}</span> Cars</h1>
+                    <h1 class="text-xl  md:text-nowrap ">Total Result: <span
+                            class="font-bold">{{ $carCount }}</span> Cars</h1>
                 </div>
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
@@ -72,15 +74,13 @@
 
             <div class="flex flex-col gap-2 md:gap-6 justify-between ">
                 <div class="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    @foreach ($cars as $car )
+                    @foreach ($cars as $car)
                         <x-car-card :$car />
                     @endforeach
                 </div>
                 {{-- pagination --}}
-                
-                    {{$cars->onEachSide(1)->links('pagination')}}
-                    {{-- <x-pagination totalPage="5" selectedPage="1" /> --}}
-                </div>
+                {{ $cars->onEachSide(1)->links('pagination') }}
+            </div>
             </div>
 
         </section>

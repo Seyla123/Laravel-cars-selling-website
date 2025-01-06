@@ -1,5 +1,5 @@
 @props([
-    'myAccountData'=>['My Cars' => 'car.index', 'My Favourites Cars' => 'signup', 'Logout' => 'signup']
+    'myAccountData'=>['My Cars' => 'car.index', 'My Favourites Cars' => 'car.watchlist', 'Logout' => 'signup']
 ])
 <div class="hidden md:flex z-10">
     <ul class="flex items-center space-x-4">

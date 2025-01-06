@@ -1,7 +1,3 @@
-@props([
-    'selectedPage'=>1,
-    'totalPage'=>5
-])
 @if($paginator->hasPages())
 <div class="bg-white  flex justify-center items-center py-2 md:py-4 rounded-lg">
     <nav aria-label="Page navigation example">

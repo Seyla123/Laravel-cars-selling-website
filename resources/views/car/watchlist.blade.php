@@ -15,9 +15,7 @@
                 </div>
                 @endif
                 {{-- pagination --}}
-                <div class="bg-white flex justify-center items-center flex-none py-2 md:py-4 rounded-lg">
-                    <x-pagination totalPage="5" selectedPage="1" />
-                </div>
+                {{ $cars->onEachSide(1)->links('pagination') }}
             </section>
         </div>
     </div>

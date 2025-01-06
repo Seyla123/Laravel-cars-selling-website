@@ -1,7 +1,7 @@
 <x-app-layout title="My Car">
     <x-layouts.main-layout title="My Cars">
         <table
-            class="h-full w-full text-sm text-left rtl:text-right text-gray-500   bg-white  rounded-lg border-b border-gray-200">
+            class=" h-full w-full text-sm text-left rtl:text-right text-gray-500   bg-white  rounded-lg border-b border-gray-200">
             <thead class="text-xs text-gray-700 uppercase   ">
                 <tr>
                     <th scope="col" class="px-6 py-3 border-b border-gray-200">
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 @forelse ($cars as $car)
-                    <tr class="border-b border-gray-200">
+                    <tr class="border-b border-gray-200 ">
                         <td class="px-6 py-4">
                             <img src="{{ $car->primaryImage->image_path }}" alt="{{$car->model->name}}" class="max-w-[100px]">
                         </td>
@@ -61,9 +61,7 @@
             </tbody>
         </table>
         {{-- pagination --}}
-        <div class="bg-white  flex justify-center items-center py-2 md:py-4 rounded-lg">
-            <x-pagination totalPage="5" selectedPage="1" />
-        </div>
+        {{$cars->onEachSide(1)->links('pagination')}}
     </x-layouts.main-layout>
 
 

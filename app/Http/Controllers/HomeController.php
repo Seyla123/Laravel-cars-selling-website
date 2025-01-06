@@ -11,8 +11,7 @@ class HomeController extends Controller
         $cars = Car::where('published_at', '<', now())
                 ->with('primaryImage','model', 'city', 'maker', 'carType', 'fuelType')
                 ->orderBy('published_at', 'desc')
-                ->limit(30)
-                ->get();
+                ->paginate(10);
                 
         return view('home.index', [
             'cars'=>$cars
