@@ -25,7 +25,6 @@
                 <tr class="border-b border-gray-200">
                     <td class="px-6 py-4">
                         <img src="{{ asset('assets/images/car.png')}}" alt="" class="max-w-[100px]">
-
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         2021 Honda Civic
@@ -51,8 +50,6 @@
                     </td>
                 </tr>
                 @endfor
-
-
             </tbody>
 
         </table>
