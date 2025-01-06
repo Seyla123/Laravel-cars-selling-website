@@ -4,7 +4,7 @@
     @endphp
     <x-layouts.main-layout title="Add New Car">
         <div class="p-4">
-            <form action="{{ route('car.create') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
+            <form action="{{ route('car.post') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
                 @csrf
                 {{-- form field --}}
                 <div class="flex gap-6 w-full flex-col ">
@@ -20,13 +20,14 @@
                     </div>
                     {{-- price , vin code , mileage --}}
                     <div class="flex gap-4 w-full">
+
                         <x-input-field name="price" placeholder="Price" label="Price" labelClass="font-medium	" />
                         <x-input-field name="vinCode" placeholder="Vin Code" label="Vin Code"
                             labelClass="font-medium	" />
                         <x-input-field name="mileage" placeholder="Mileage" label="Mileage (ml)"
                             labelClass="font-medium	" />
                     </div>
-                    {{-- Fuel Type --}}
+                    {{-- Fuel Types --}}
                     <div>
                         <x-radio-selector name="fuelType" title="Fuel Type" :items="$fuelTypes" />
                     </div>
