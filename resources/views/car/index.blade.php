@@ -54,7 +54,7 @@
                     @empty
                     <tr>
                         <td colspan="5" class="h-[350px] md:h-[500px]  px-6 py-4 text-center">
-                            No cars found. <a href="{{route('car.create')}}" class="text-blue-500">Create Now</a>
+                            You don't have any car yet. <a href="{{route('car.create')}}" class="text-blue-500">Add new car</a>
                         </td>
                     </tr>
                 @endforelse
