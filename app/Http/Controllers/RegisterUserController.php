@@ -9,6 +9,11 @@ class RegisterUserController extends Controller
 {
     public function create(): View
     {
-        return view('auth.signup');
+        return view('auth.register');
+    }
+    public function store() 
+    {
+        dd(request()->all());
+        return "hello world";
     }
 }

@@ -11,6 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Auth
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisterUserController::class, 'store'])->name('register.post');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 // Car
