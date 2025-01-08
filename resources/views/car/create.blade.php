@@ -1,7 +1,4 @@
 <x-app-layout title="Add New Car">
-    @php
-        $data = ['cars' => 'Cars', 'boats' => 'Boats', 'trucks' => 'Trucks', 'motorcycles' => 'Motorcycles'];
-    @endphp
     <x-layouts.main-layout title="Add New Car">
         <div class="p-4">
             <form action="{{ route('car.post') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
@@ -10,8 +7,8 @@
                 <div class="flex gap-6 w-full flex-col ">
                     {{-- makers , models , year --}}
                     <div class="flex gap-4 w-full">
-                        <x-selector name="Maker" placeholder="Maker" label="Maker" :items="$makers" />
-                        <x-selector name="Model" placeholder="Model" label="Model" :items="$models" />
+                        <x-selector name="maker" placeholder="Maker" label="Maker" :items="$makers" />
+                        <x-selector name="model" placeholder="Model" label="Model" :items="$models" />
                         <x-input-field name="year" placeholder="Year" label="Year" labelClass="font-medium	" />
                     </div>
                     {{-- Car Type --}}
@@ -22,14 +19,14 @@
                     <div class="flex gap-4 w-full">
 
                         <x-input-field name="price" placeholder="Price" label="Price" labelClass="font-medium	" />
-                        <x-input-field name="vinCode" placeholder="Vin Code" label="Vin Code"
+                        <x-input-field name="vin" placeholder="Vin Code" label="Vin Code"
                             labelClass="font-medium	" />
                         <x-input-field name="mileage" placeholder="Mileage" label="Mileage (ml)"
                             labelClass="font-medium	" />
                     </div>
                     {{-- Fuel Types --}}
                     <div>
-                        <x-radio-selector name="fuelType" title="Fuel Type" :items="$fuelTypes" />
+                        <x-radio-selector name="fuelType" title="Fuel Type" :items="$fuelTypes"  />
                     </div>
                     {{-- state and city --}}
                     <div class="flex gap-4 w-full">

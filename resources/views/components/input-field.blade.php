@@ -9,4 +9,7 @@
     <input name="{{ $name }}" type="{{ $type }}"
         class="block appearance-none w-full px-4 py-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 {{ $class }}"
         placeholder="{{ $placeholder }}" />
+    @error($name)
+        <span class="text-red-500 text-sm">{{$message}}</span>
+    @enderror
 </div>

@@ -4,8 +4,6 @@
     'placeholder'=>'-- Select --',
     'label'=>'',
     'labelClass'=>'',
-    'errorMessage'=>'This field is Required',
-    'isError'=>false,
     'class'=>''])
 <div class="w-full">
     @if ($label)<label class="text-sm mb-2 block font-medium {{$labelClass}}">{{ $label }}</label>@endif
@@ -22,6 +20,8 @@
             <svg data-lucide="chevron-down" class="w-4 h-4 "></svg>
         </div>
     </div>
-    @if($isError)<span class="text-red-500 text-sm">{{$errorMessage}}</span> @endif
+    @error($name)
+        <span class="text-red-500 text-sm">{{$message}}</span>
+    @enderror
 </div>
 
