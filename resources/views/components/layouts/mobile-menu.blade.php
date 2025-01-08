@@ -33,16 +33,19 @@
                 </li>
                 @guest
                     <li>
-                        <a href="{{route('register')}}" class="text-gray-800 hover:text-gray-600">Register</a>
+                        <a href="{{ route('register') }}" class="text-gray-800 hover:text-gray-600">Register</a>
                     </li>
                     <li>
-                        <a href="{{route('login')}}" class="text-gray-800 hover:text-gray-600">Login</a>
+                        <a href="{{ route('login') }}" class="text-gray-800 hover:text-gray-600">Login</a>
                     </li>
                 @endguest
                 @auth
-                    <li>
-                        <a href="{{route('logout')}}" class="text-gray-800 hover:text-gray-600">Logout</a>
-                    </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="text-gray-800 hover:text-gray-600">Logout</a>
+                    </form>
+                </li>
                 @endauth
             </ul>
         </div>

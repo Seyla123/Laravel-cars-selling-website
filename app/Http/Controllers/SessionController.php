@@ -19,4 +19,8 @@ class SessionController extends Controller
         dd(request()->all());
         return ;
     }
+    public function destroy()
+    {
+        dd('iloveu');
+    }
 }
