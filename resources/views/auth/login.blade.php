@@ -13,8 +13,8 @@
             </div>
         </form>
 
+        {{-- Login button --}}
         <div class="!mt-8">
-            {{-- Login button --}}
             <x-button type="submit" title="Login" />
         </div>
         <p class="text-gray-800 text-sm mt-6 text-center">Don't have an account yet?

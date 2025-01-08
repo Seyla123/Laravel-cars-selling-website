@@ -13,7 +13,14 @@ class RegisterUserController extends Controller
     }
     public function store() 
     {
-        dd(request()->all());
+      //  dd(request()->all());
+        $validation = request()->validate([
+            'name' => ['required'],
+            'email'=>['required'],
+            'phone'=>['required'],
+            'password'=>['required'],
+            'confirmPassword'=>['same:password'],
+        ]);
         return "hello world";
     }
 }

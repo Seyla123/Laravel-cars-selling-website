@@ -6,19 +6,28 @@
             @csrf
             <div class="space-y-6">
                 {{-- form fields --}}
-                <x-input-field name="email" placeholder="Enter email" label="Email" labelClass="font-medium" />
-                <x-input-field name="password" placeholder="Enter password" label="Password" labelClass="font-medium" />
-                <x-input-field name="confirmPassword" placeholder="Enter password" label="Confirm Password" labelClass="font-medium" />
+                <x-input-field name="email" placeholder="Enter email" value="{{ old('email') }}" label="Email" labelClass="font-medium" />
+                <x-input-field name="password" type="password" value="{{ old('password') }}" placeholder="Enter password" label="Password"
+                    labelClass="font-medium" />
+                <x-input-field name="confirmPassword" value="{{ old('confirmPassword') }}" type="password" placeholder="Enter password"
+                    label="Confirm Password" labelClass="font-medium" />
                 {{-- check term condition --}}
                 <x-check-term />
+                @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-500">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
+            {{-- Register button --}}
             <div class="!mt-8">
-                {{-- Register button --}}
                 <x-button type="submit" title="Create an account" />
             </div>
         </form>
         <p class="text-gray-800 text-sm mt-6 text-center">Already have an account?
-            <a href="{{route('login')}}" class="text-blue-600 hover:underline ml-1">
+            <a href="{{ route('login') }}" class="text-blue-600 hover:underline ml-1">
                 Login here
             </a>
         </p>
