@@ -40,12 +40,12 @@
                     </li>
                 @endguest
                 @auth
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="text-gray-800 hover:text-gray-600">Logout</a>
-                    </form>
-                </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="text-gray-800 hover:text-gray-600">Logout</a>
+                        </form>
+                    </li>
                 @endauth
             </ul>
         </div>

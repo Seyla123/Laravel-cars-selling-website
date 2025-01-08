@@ -7,7 +7,7 @@
             <div class="space-y-6">
                 {{-- group fields --}}
                 <x-input-field name="email" value="{{ old('email') }}" placeholder="Enter email" label="Email" labelClass="font-medium" />
-                <x-input-field name="password" value="{{ old('password') }}" placeholder="Enter password" label="Password" labelClass="font-medium" />
+                <x-input-field name="password" type="password" value="{{ old('password') }}" placeholder="Enter password" label="Password" labelClass="font-medium" />
                 {{-- check term condition --}}
                 <x-check-term/>
             </div>
