@@ -57,5 +57,19 @@
                 </a>
             </li>
         @endguest
+        @auth
+        <li>
+            {{-- logout --}}
+            <a href="{{route('logout')}}">
+                <x-button title="Logout"
+                    customClass="bg-white duration-300  flex gap-2 items-center hover:px-1  hover:text-main-700 hover:font-bold group">
+                    <x-slot:leftIcon>
+                        <svg data-lucide="log-out"
+                            class="w-5 h-5 transition-transform duration-500 group-hover:rotate-[360deg] transform"></svg>
+                    </x-slot:leftIcon>
+                </x-button>
+            </a>
+        </li>
+        @endauth
     </ul>
 </div>

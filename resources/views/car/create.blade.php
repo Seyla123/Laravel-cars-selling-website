@@ -1,7 +1,7 @@
 <x-app-layout title="Add New Car">
     <x-layouts.main-layout title="Add New Car">
         <div class="p-4">
-            <form action="{{ route('car.post') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
+            <form action="{{route('car.store')}}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
                 @csrf
                 {{-- form field --}}
                 <div class="flex gap-6 w-full flex-col ">

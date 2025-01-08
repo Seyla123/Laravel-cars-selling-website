@@ -33,12 +33,17 @@
                 </li>
                 @guest
                     <li>
-                        <a href="/" class="text-gray-800 hover:text-gray-600">Register</a>
+                        <a href="{{route('register')}}" class="text-gray-800 hover:text-gray-600">Register</a>
                     </li>
                     <li>
-                        <a href="/" class="text-gray-800 hover:text-gray-600">Login</a>
+                        <a href="{{route('login')}}" class="text-gray-800 hover:text-gray-600">Login</a>
                     </li>
                 @endguest
+                @auth
+                    <li>
+                        <a href="{{route('logout')}}" class="text-gray-800 hover:text-gray-600">Logout</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
