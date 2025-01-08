@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \Illuminate\Contracts\View\View;
+use Illuminate\View\View;
 
-class SignupController extends Controller
+class RegisterUserController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('auth.signup');
     }

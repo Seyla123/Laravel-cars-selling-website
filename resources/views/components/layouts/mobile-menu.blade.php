@@ -1,5 +1,5 @@
 @props([
-    'myAccountData'=>['My Cars' => 'car.index', 'My Favourites Cars' => 'signup', 'Logout' => 'signup']
+    'myAccountData'=>[]
 ])
 <div class="block md:hidden">
     <svg data-lucide="align-justify" class="w-8 h-8 group cursor-pointer" onclick="toggleMenu()"></svg>
@@ -31,7 +31,7 @@
                 </details>
             </li>
             <li>
-                <a href="/" class="text-gray-800 hover:text-gray-600">Signup</a>
+                <a href="/" class="text-gray-800 hover:text-gray-600">Register</a>
             </li>
             <li>
                 <a href="/" class="text-gray-800 hover:text-gray-600">Login</a>

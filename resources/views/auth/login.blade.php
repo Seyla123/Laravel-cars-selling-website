@@ -18,7 +18,7 @@
         </div>
         <p class="text-gray-800 text-sm mt-6 text-center">Don't have an account yet?
             <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1">
-                Signup here
+                Register here
             </a>
         </p>
     </x-auth-layout>

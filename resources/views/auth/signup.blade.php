@@ -1,4 +1,4 @@
-<x-base-layout title="Signup">
+<x-base-layout title="Register">
     {{-- auth layout form --}}
     <x-auth-layout title="Getting Started with Us">
                     {{-- form content --}}
@@ -22,7 +22,7 @@
                     </form>
 
                     <div class="!mt-12">
-                        {{-- signup button --}}
+                        {{-- Register button --}}
                         <x-button
                             type="submit"
                             title="Create an account"

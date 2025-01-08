@@ -3,15 +3,14 @@
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SignupController;
+use App\Http\Controllers\RegisterUserController;
 use Illuminate\Support\Facades\Route;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Auth
-// Signup
-Route::get('/signup', [SignupController::class, 'create'])->name('signup');
+Route::get('/register', [RegisterUserController::class, 'create'])->name('register');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 // Car
