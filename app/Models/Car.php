@@ -17,7 +17,6 @@ class Car extends Model
       'maker_id',
       'model_id',
       'year',
-      'color',
       'price',
       'vin',
       'mileage',

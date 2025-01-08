@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarType;
+use App\Models\City;
+use App\Models\FuelType;
+use App\Models\Maker;
+use App\Models\Model;
+use App\Models\State;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(id: 5)
+        $cars = User::find(id: 6)
             ->cars()
             ->with(['primaryImage', 'maker', 'model'])
             ->orderBy('created_at', 'desc')
@@ -26,7 +32,13 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('car.create');
+        $makers = Maker::get();
+        $models = Model::get();
+        $carTypes = CarType::get();
+        $fuelTypes = FuelType::get();
+        $states = State::get();
+        $cities = City::get();
+        return view('car.create', compact('makers', 'models', 'carTypes', 'fuelTypes', 'states', 'cities'));
     }
 
     /**
@@ -34,7 +46,48 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = request()->validate([
+            'maker' => ['required'],
+            'model' => ['required'],
+            'year' => ['required'],
+            'carType' => ['required'],
+            'price' => ['required'],
+            'vin' => ['required'],
+            'mileage' => ['required'],
+            'fuelType' => ['required'],
+            'state' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
+            'phone' => ['required'],
+        ]);
 
+        // $car = Car::create([
+        //     'maker_id' => request('maker'),
+        //     'model_id' => request('model'),
+        //     'year' => request('year'),
+        //     'car_type_id' => request('carType'),
+        //     'price' => request('price'),
+        //     'vin' => request('vin'),
+        //     'mileage' => request('mileage'),
+        //     'fuel_type_id' => request('fuelType'),
+        //     'state_id' => request('state'),
+        //     'city_id' => request('city'),
+        //     'address' => request('address'),
+        //     'phone' => request('phone'),
+        //     'description' => request('description'),
+        //     'user_id' => 6,
+        // ]);
+        // $car->images()->createMany([
+        //     [
+        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
+        //         'position' => 1
+        //     ],
+        //     [
+        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
+        //         'position' => 2
+        //     ]
+        // ]);
+        return 'HELLO WORLD';
     }
 
     /**
@@ -69,7 +122,7 @@ class CarController extends Controller
         $query = Car::where('published_at', '<', now())
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->orderBy('published_at', 'desc');
-            
+
         $cars = $query->paginate(1);
         // dd($cars[0]);
 
@@ -85,7 +138,7 @@ class CarController extends Controller
     }
     public function watchlist()
     {
-        $cars = User::find(5)
+        $cars = User::find(7)
             ->favouriteCars()
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->where('deleted_at', null)

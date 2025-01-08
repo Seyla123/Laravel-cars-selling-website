@@ -1,80 +1,54 @@
 <x-app-layout title="Add New Car">
-    @php
-    $carTypes = [
-        ['id' => 'sedan', 'value' => 'sedan', 'label' => 'Sedan'],
-        ['id' => 'hatchback', 'value' => 'hatchback', 'label' => 'Hatchback'],
-        ['id' => 'suv', 'value' => 'suv', 'label' => 'SUV (Sport Utility Vehicle)'],
-    ];
-
-    $fuelTypes = [
-        ['id' => 'gasoline', 'value' => 'gasoline', 'label' => 'Gasoline'],
-        ['id' => 'diesel', 'value' => 'diesel', 'label' => 'Diesel'],
-        ['id' => 'electric', 'value' => 'electric', 'label' => 'Electric'],
-        ['id' => 'hybrid', 'value' => 'hybrid', 'label' => 'Hybrid'],
-    ];
-
-    $data = ["cars" => "Cars", "boats" => "Boats", "trucks" => "Trucks", "motorcycles" => "Motorcycles"]
-@endphp
     <x-layouts.main-layout title="Add New Car">
         <div class="p-4">
-            <form action="" class="flex w-full flex-col xl:flex-row gap-4 ">
+            <form action="{{ route('car.post') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 ">
+                @csrf
                 {{-- form field --}}
                 <div class="flex gap-6 w-full flex-col ">
+                    {{-- makers , models , year --}}
                     <div class="flex gap-4 w-full">
-                        <x-selector name="Maker" placeholder="Maker" label="Maker" :$data/>
-                        <x-selector name="Model" placeholder="Model" label="Model" :$data/>
-                        <x-selector name="Year" placeholder="Year" label="Year" :$data />
-                    </div>
-                    <div>
-                        <label for="carType" class="text-sm mb-2 block font-medium ">Car Type</label>
-                        <div class="flex items-center space-x-4">
-                            @foreach($carTypes as $carType)
-                                <div class="flex items-center ">
-                                    <input id="{{ $carType['id'] }}" type="radio" value="{{ $carType['value'] }}" name="carType" class="hidden peer" />
-                                    <label for="{{ $carType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white  cursor-pointer ">
-                                        {{ $carType['label'] }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-
+                        <x-selector name="maker" placeholder="Maker" label="Maker" :items="$makers" />
+                        <x-selector name="model" placeholder="Model" label="Model" :items="$models" />
+                        <x-input-field name="year" placeholder="Year" label="Year" labelClass="font-medium	" />
                     </div>
                     {{-- Car Type --}}
-                    <div class="flex gap-4 w-full">
-                        <x-input-field name="price"  placeholder="Price" label="Price" labelClass="font-medium	"/>
-                        <x-input-field name="vinCode"  placeholder="Vin Code" label="Vin Code" labelClass="font-medium	"/>
-                        <x-input-field name="mileage"  placeholder="Mileage" label="Mileage (ml)" labelClass="font-medium	"/>
-                    </div>
-                    <div class="flex gap-4 w-full">
-                        <x-selector name="Maker" placeholder="Maker" label="Maker" />
-                        <x-selector name="Model" placeholder="Model" label="Model" />
-                        <x-selector name="Year" placeholder="Year" label="Year" />
-                    </div>
-                    {{-- Fuel Type --}}
                     <div>
-                        <label for="fuelType" class="text-sm mb-2 block font-medium ">Fuel Type</label>
-                        <div class="flex items-center space-x-4">
-                            @foreach($fuelTypes as $fuelType)
-                                <div class="flex items-center ">
-                                    <input id="{{ $fuelType['id'] }}" type="radio" value="{{ $fuelType['value'] }}" name="fuelType" class="hidden peer" />
-                                    <label for="{{ $fuelType['id'] }}" class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-900 peer-checked:bg-blue-500 peer-checked:text-white  cursor-pointer ">
-                                        {{ $fuelType['label'] }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
+                        <x-radio-selector name="carType" title="Car Type" :items="$carTypes" />
+                    </div>
+                    {{-- price , vin code , mileage --}}
+                    <div class="flex gap-4 w-full">
+
+                        <x-input-field name="price" placeholder="Price" label="Price" labelClass="font-medium	" />
+                        <x-input-field name="vin" placeholder="Vin Code" label="Vin Code"
+                            labelClass="font-medium	" />
+                        <x-input-field name="mileage" placeholder="Mileage" label="Mileage (ml)"
+                            labelClass="font-medium	" />
+                    </div>
+                    {{-- Fuel Types --}}
+                    <div>
+                        <x-radio-selector name="fuelType" title="Fuel Type" :items="$fuelTypes"  />
                     </div>
                     {{-- state and city --}}
                     <div class="flex gap-4 w-full">
-                        <x-selector name="state" placeholder="Stae/Region" label="Stae/Region" :$data/>
-                        <x-selector name="city" placeholder="City" label="City" :$data/>
+                        <x-selector name="state" placeholder="Stae/Region" label="Stae/Region" :items="$states" />
+                        <x-selector name="city" placeholder="City" label="City" :items="$cities" />
                     </div>
-                    {{-- submit and reset big screen--}}
+                    {{-- address and phone --}}
+                    <div class="flex gap-4 w-full">
+                        <x-input-field name="address" placeholder="Addess" label="Addess" labelClass="font-medium" />
+                        <x-input-field name="phone" placeholder="Phone" label="Phone" labelClass="font-medium	" />
+                    </div>
+                    {{-- description --}}
+                    <div>
+                        <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter car description"
+                            class="block w-full px-4 py-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    {{-- submit and reset big screen --}}
                     <div class="hidden xl:flex  w-full  items-center justify-end">
                         <div class="max-w-[300px] flex w-full gap-4">
                             <x-button title="Reset"
-                            customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
-                            <x-button title="Create"  type="submit"/>
+                                customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
+                            <x-button title="Create" type="submit" />
                         </div>
                     </div>
 
@@ -83,7 +57,8 @@
                 {{-- image upload --}}
                 <div class=" border border-dashed border-gray-300 rounded-lg p-4 w-full xl:max-w-[500px] max-h-[200px]">
                     {{-- image upload --}}
-                    <div class="flex flex-col justify-center w-full items-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 h-full">
+                    <div
+                        class="flex flex-col justify-center w-full items-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 h-full">
                         <label for="images" class="flex flex-col items-center justify-center w-full h-full">
                             <svg data-lucide="image" class="w-12 h-12 text-gray-400"></svg>
                             <p class="text-gray-600 text-sm">Drag and drop images here</p>
@@ -124,8 +99,8 @@
                 <div class="flex xl:hidden  w-full  items-center justify-center sm:justify-end">
                     <div class="sm:max-w-[300px] flex w-full gap-4">
                         <x-button title="Reset"
-                        customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
-                        <x-button title="Create"  type="submit"/>
+                            customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
+                        <x-button title="Create" type="submit" />
                     </div>
                 </div>
             </form>
