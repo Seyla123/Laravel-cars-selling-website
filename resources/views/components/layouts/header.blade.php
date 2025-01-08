@@ -1,5 +1,5 @@
 @php
- $myAccountData=['My Cars' => 'car.index', 'My Favourites Cars' => 'car.watchlist', 'Logout' => 'register'];
+ $myAccountData=['My Cars' => 'car.index', 'My Favourites Cars' => 'car.watchlist'];
 @endphp
 <nav class="  md:flex-wrap bg-white border p-6 ">
     <div class="max-w-screen-2xl mx-auto flex items-center justify-between">

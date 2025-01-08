@@ -4,6 +4,11 @@
         {{-- form content --}}
         <form method="POST" action="{{route('login')}}">
             @csrf
+            @error('auth')
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                    <span class="font-medium">Oops!</span> {{$message}}.
+                </div>
+            @enderror
             <div class="space-y-6">
                 {{-- group fields --}}
                 <x-input-field name="email" value="{{ old('email') }}" placeholder="Enter email" label="Email" labelClass="font-medium" />
