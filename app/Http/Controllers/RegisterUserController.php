@@ -13,7 +13,6 @@ class RegisterUserController extends Controller
     }
     public function store() 
     {
-      //  dd(request()->all());
         $validation = request()->validate([
             'name' => ['required'],
             'email'=>['required'],

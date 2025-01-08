@@ -9,7 +9,7 @@
                 <x-input-field name="email" placeholder="Enter email" value="{{ old('email') }}" label="Email" labelClass="font-medium" />
                 <x-input-field name="password" type="password" value="{{ old('password') }}" placeholder="Enter password" label="Password"
                     labelClass="font-medium" />
-                <x-input-field name="confirmPassword" value="{{ old('confirmPassword') }}" type="password" placeholder="Enter password"
+                <x-input-field name="confirmPassword"  type="password" placeholder="Enter password"
                     label="Confirm Password" labelClass="font-medium" />
                 {{-- check term condition --}}
                 <x-check-term />

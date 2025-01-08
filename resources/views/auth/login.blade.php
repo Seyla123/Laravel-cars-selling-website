@@ -2,21 +2,21 @@
     {{-- auth layout form --}}
     <x-auth-layout title="Welcome Back!">
         {{-- form content --}}
-        <form method="POST">
+        <form method="POST" action="{{route('login')}}">
             @csrf
             <div class="space-y-6">
                 {{-- group fields --}}
-                <x-input-field name="email" placeholder="Enter email" label="Email" labelClass="font-medium" />
-                <x-input-field name="password" placeholder="Enter password" label="Password" labelClass="font-medium" />
+                <x-input-field name="email" value="{{ old('email') }}" placeholder="Enter email" label="Email" labelClass="font-medium" />
+                <x-input-field name="password" value="{{ old('password') }}" placeholder="Enter password" label="Password" labelClass="font-medium" />
                 {{-- check term condition --}}
                 <x-check-term/>
             </div>
+            {{-- Login button --}}
+            <div class="!mt-8">
+                <x-button type="submit" title="Login" />
+            </div>
         </form>
 
-        {{-- Login button --}}
-        <div class="!mt-8">
-            <x-button type="submit" title="Login" />
-        </div>
         <p class="text-gray-800 text-sm mt-6 text-center">Don't have an account yet?
             <a href="{{route('register')}}" class="text-blue-600  hover:underline ml-1">
                 Register here
