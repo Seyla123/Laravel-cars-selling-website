@@ -1,5 +1,5 @@
 @props([
-    'myAccountData'=>[]
+    'myAccountData' => [],
 ])
 <div class="block md:hidden">
     <svg data-lucide="align-justify" class="w-8 h-8 group cursor-pointer" onclick="toggleMenu()"></svg>
@@ -9,51 +9,55 @@
         <div class="w-full flex justify-end">
             <svg data-lucide="x" class="w-8 h-8 group cursor-pointer" onclick="toggleMenu()"></svg>
         </div>
-       <div class="h-full flex flex-col items-center justify-center">
-        <ul class="flex flex-col items-center justify-between p-6 gap-3">
-            <li>
-                <a href="{{ route('car.create') }}" class="text-gray-800 hover:text-gray-600">Add new car</a>
-            </li>
-            <li>
-                <details class="group flex items-center flex-col">
-                    <summary class="flex items-center cursor-pointer">
-                        My account
-                        <svg data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-500 group-open:rotate-180"></svg>
-                    </summary>
-                    <ul class="text-sm text-gray-700 mt-2">
-                        @foreach ($myAccountData as $item => $value)
-                            <li class="group-open:block hidden">
-                                <a href="{{route($value)}}"
-                                    class="text-gray-800 hover:text-gray-600">{{ $item }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <a href="/" class="text-gray-800 hover:text-gray-600">Register</a>
-            </li>
-            <li>
-                <a href="/" class="text-gray-800 hover:text-gray-600">Login</a>
-            </li>
-        </ul>
-       </div>
+        <div class="h-full flex flex-col items-center justify-center">
+            <ul class="flex flex-col items-center justify-between p-6 gap-3">
+                <li>
+                    <a href="{{ route('car.create') }}" class="text-gray-800 hover:text-gray-600">Add new car</a>
+                </li>
+                <li>
+                    <details class="group flex items-center flex-col">
+                        <summary class="flex items-center cursor-pointer">
+                            My account
+                            <svg data-lucide="chevron-down"
+                                class="w-4 h-4 transition-transform duration-500 group-open:rotate-180"></svg>
+                        </summary>
+                        <ul class="text-sm text-gray-700 mt-2">
+                            @foreach ($myAccountData as $item => $value)
+                                <li class="group-open:block hidden">
+                                    <a href="{{ route($value) }}"
+                                        class="text-gray-800 hover:text-gray-600">{{ $item }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </details>
+                </li>
+                @guest
+                    <li>
+                        <a href="/" class="text-gray-800 hover:text-gray-600">Register</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-gray-800 hover:text-gray-600">Login</a>
+                    </li>
+                @endguest
+            </ul>
+        </div>
     </div>
 </div>
 <script>
-    let toggle=false;
+    let toggle = false;
+
     function toggleMenu() {
         const menu = document.getElementById('mobileMenu');
         document.body.classList.toggle('overflow-hidden');
 
-        if(toggle){
+        if (toggle) {
             menu.classList.remove('w-screen');
             menu.classList.add('-right-full');
-        }else{
+        } else {
             menu.classList.add('w-screen');
             menu.classList.remove('-right-full');
         }
-        toggle=!toggle;
+        toggle = !toggle;
 
     }
 </script>
