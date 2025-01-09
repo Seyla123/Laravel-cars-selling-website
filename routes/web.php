@@ -18,7 +18,16 @@ Route::post('/login', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 // Car
-Route::get('/car/search', [CarController::class, 'search'])->name('car.search');
-Route::get('/car/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
-Route::resource('car', CarController::class);
-
+Route::middleware('auth')->group(function () {
+    Route::prefix('/car')->group(function () {
+        Route::get('/search', [CarController::class, 'search'])->name('car.search');
+        Route::get('/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
+        Route::get('/', [CarController::class, 'index'])->name('car.index');
+        Route::get('/create', [CarController::class, 'create'])->name('car.create');
+        Route::post('', [CarController::class, 'store'])->name('car.store');
+        Route::get('/{car}', [CarController::class, 'show'])->name('car.show');
+        Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
+        Route::put('/{car}', [CarController::class, 'update'])->name('car.update');
+        Route::delete('/{car}', [CarController::class, 'destroy'])->name('car.destroy');
+    });
+});
