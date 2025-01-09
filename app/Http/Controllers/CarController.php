@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CarPosted;
 use App\Models\Car;
 use App\Models\CarType;
 use App\Models\City;
@@ -11,6 +12,7 @@ use App\Models\Model;
 use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -78,6 +80,7 @@ class CarController extends Controller
             'description' => request('description'),
             'user_id' => Auth::user()->id,
         ]);
+        // images
         $car->images()->createMany([
             [
                 'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
@@ -88,12 +91,17 @@ class CarController extends Controller
                 'position' => 2
             ]
         ]);
-        return 'car.index';
+        // car feature , set default
+        $car->features()->create();
+        // send email
+        Mail::to($car->owner->email)->queue(new CarPosted($car));
+
+        return redirect(route('car.index'));
     }
 
     /**
      * Display the specified resource.
-     */
+    */
     public function show(Car $car)
     {
         return view('car.show', [
