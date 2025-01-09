@@ -63,7 +63,7 @@
             {{-- User --}}
             <x-dropdown id="userDropdown" :default="false">
                 <x-button :title="ucwords(\Illuminate\Support\Facades\Auth::user()->name)"
-                        class="rounded-lg w-full py-4 px-7 flex gap-2 items-center ">
+                        class="rounded-full w-full py-3 px-6  flex gap-2 items-center ">
                         <x-slot:leftIcon>
                             <svg data-lucide="user-circle" class="w-5 h-5 "></svg>
                         </x-slot:leftIcon>
@@ -72,20 +72,33 @@
                         </x-slot:rightIcon>
                 </x-button>
                 <x-slot:dropdownContent>
+                    <p class="text-sm px-4 py-2">{{Str::ucfirst(\Illuminate\Support\Facades\Auth::user()->email)}}</p>
+                    <hr>
                     <ul class="py-2 text-sm text-gray-700  " aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 w-full text-start ">Profile</a>
+                                <a >
+                                    <button type="submit" href=""
+                                    class="flex px-4 py-2 justify-start gap-1 hover:bg-gray-100 w-full items-center">
+                                    <svg data-lucide="circle-user" class="w-4 h-4 "></svg>
+                                    Profile</button>
+                                </a>
                             </li>
                             <li>
                                 <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 w-full text-start ">Setting</a>
+                                    class="">
+                                    <button type="submit" href=""
+                                    class="flex px-4 py-2 justify-start gap-1 hover:bg-gray-100 w-full items-center">
+                                    <svg data-lucide="settings" class="w-4 h-4 "></svg>
+                                    Settings</button>
+                                </a>
                             </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" href=""
-                                        class="block px-4 py-2 hover:bg-gray-100 w-full text-start ">Logout</button>
+                                        class="flex px-4 py-2 justify-start gap-1 hover:bg-gray-100 w-full items-center">
+                                        <svg data-lucide="log-out" class="w-4 h-4 "></svg>
+                                        Logout</button>
                                 </form>
                             </li>
                     </ul>
