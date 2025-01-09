@@ -18,16 +18,22 @@ Route::post('/login', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 // Car
+
+// Public Routes
+Route::get('car/search', [CarController::class, 'search'])->name('car.search');
+
+// Authenticated Routes
 Route::middleware('auth')->group(function () {
     Route::prefix('/car')->group(function () {
-        Route::get('/search', [CarController::class, 'search'])->name('car.search');
         Route::get('/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
         Route::get('/', [CarController::class, 'index'])->name('car.index');
         Route::get('/create', [CarController::class, 'create'])->name('car.create');
         Route::post('', [CarController::class, 'store'])->name('car.store');
-        Route::get('/{car}', [CarController::class, 'show'])->name('car.show');
         Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
         Route::put('/{car}', [CarController::class, 'update'])->name('car.update');
         Route::delete('/{car}', [CarController::class, 'destroy'])->name('car.destroy');
     });
 });
+
+// Public route for viewing a single car
+Route::get('car/{car}', [CarController::class, 'show'])->name('car.show');

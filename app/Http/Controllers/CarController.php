@@ -10,6 +10,7 @@ use App\Models\Maker;
 use App\Models\Model;
 use App\Models\State;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -19,7 +20,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(id: 6)
+        $cars = User::find(id: Auth::id())
             ->cars()
             ->with(['primaryImage', 'maker', 'model'])
             ->orderBy('created_at', 'desc')
@@ -46,7 +47,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = request()->validate([
+        request()->validate([
             'maker' => ['required'],
             'model' => ['required'],
             'year' => ['required'],
@@ -61,33 +62,33 @@ class CarController extends Controller
             'phone' => ['required'],
         ]);
 
-        // $car = Car::create([
-        //     'maker_id' => request('maker'),
-        //     'model_id' => request('model'),
-        //     'year' => request('year'),
-        //     'car_type_id' => request('carType'),
-        //     'price' => request('price'),
-        //     'vin' => request('vin'),
-        //     'mileage' => request('mileage'),
-        //     'fuel_type_id' => request('fuelType'),
-        //     'state_id' => request('state'),
-        //     'city_id' => request('city'),
-        //     'address' => request('address'),
-        //     'phone' => request('phone'),
-        //     'description' => request('description'),
-        //     'user_id' => 6,
-        // ]);
-        // $car->images()->createMany([
-        //     [
-        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
-        //         'position' => 1
-        //     ],
-        //     [
-        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
-        //         'position' => 2
-        //     ]
-        // ]);
-        return 'HELLO WORLD';
+        $car = Car::create([
+            'maker_id' => request('maker'),
+            'model_id' => request('model'),
+            'year' => request('year'),
+            'car_type_id' => request('carType'),
+            'price' => request('price'),
+            'vin' => request('vin'),
+            'mileage' => request('mileage'),
+            'fuel_type_id' => request('fuelType'),
+            'state_id' => request('state'),
+            'city_id' => request('city'),
+            'address' => request('address'),
+            'phone' => request('phone'),
+            'description' => request('description'),
+            'user_id' => Auth::user()->id,
+        ]);
+        $car->images()->createMany([
+            [
+                'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
+                'position' => 1
+            ],
+            [
+                'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
+                'position' => 2
+            ]
+        ]);
+        return 'car.index';
     }
 
     /**
@@ -119,13 +120,17 @@ class CarController extends Controller
 
     public function search(Car $car)
     {
+        $makers = Maker::get();
+        $models = Model::get();
+        $carTypes = CarType::get();
+        $fuelTypes = FuelType::get();
+        $states = State::get();
+        $cities = City::get();
         $query = Car::where('published_at', '<', now())
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->orderBy('published_at', 'desc');
 
-        $cars = $query->paginate(1);
-        // dd($cars[0]);
-
+        $cars = $query->paginate(12);
         return view('car.search', compact('cars'));
     }
 
