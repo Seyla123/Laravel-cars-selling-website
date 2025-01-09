@@ -6,8 +6,8 @@
             @csrf
             <div class="space-y-6">
                 {{-- form fields --}}
-                <x-input-field name="email" placeholder="Enter email" value="{{ old('email') }}" label="Email" labelClass="font-medium" />
-                <x-input-field name="password" type="password" value="{{ old('password') }}" placeholder="Enter password" label="Password"
+                <x-input-field name="email" placeholder="Enter email" :value="old('email')" label="Email" labelClass="font-medium" />
+                <x-input-field name="password" type="password"  placeholder="Enter password" label="Password"
                     labelClass="font-medium" />
                 <x-input-field name="confirmPassword"  type="password" placeholder="Enter password"
                     label="Confirm Password" labelClass="font-medium" />
