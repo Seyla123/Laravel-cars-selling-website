@@ -12,7 +12,7 @@ class HomeController extends Controller
                 ->with('primaryImage','model', 'city', 'maker', 'carType', 'fuelType')
                 ->orderBy('published_at', 'desc')
                 ->paginate(10);
-                
+
         return view('home.index', [
             'cars'=>$cars
         ]);
