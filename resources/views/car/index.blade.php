@@ -34,7 +34,7 @@
                             {{ $car->getCreatedDate() }}
                         </td>
                         <td class="px-6 py-4 text-center">
-                            {{ $car->published ? 'Yes' : 'No' }}
+                            {{ $car->published_at ? 'Yes' : 'No' }}
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-end justify-end space-x-2">
@@ -44,9 +44,13 @@
                                 <a href="{{ route('car.show', $car) }}" class="text-green-500 hover:text-green-700">
                                     <svg data-lucide="image" class="w-6 h-6"></svg>
                                 </a>
-                                <a href="{{ route('car.destroy', $car)  }}" class="text-red-500 hover:text-red-700">
-                                    <svg data-lucide="trash-2" class="w-6 h-6"></svg>
-                                </a>
+                                <form action="{{ route('car.destroy', $car) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" href="{{ route('car.destroy', $car)  }}" class="text-red-500 hover:text-red-700">
+                                        <svg data-lucide="trash-2" class="w-6 h-6"></svg>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>

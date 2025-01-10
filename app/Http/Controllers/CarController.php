@@ -58,7 +58,10 @@ class CarController extends Controller
             'phone' => ['required'],
         ]);
         
-        $car =Auth::user()->cars()->create([...$carAtrributes, 'description' => request('description')]);
+        $car =Auth::user()->cars()->create([
+            ...$carAtrributes, 
+            'description' => request('description'),
+            'published_at' => now()]);
         $car->features()->create();
         $storedPaths=[];
         foreach (request()->file('images') as $image=>$value) {
@@ -90,7 +93,7 @@ class CarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Car $car)
     {
         return view('car.edit');
     }
@@ -122,9 +125,11 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Car $car)
     {
+        $car->delete();
 
+        return redirect()->route('car.index')->with('success', 'Car deleted successfully.');
     }
     public function watchlist()
     {

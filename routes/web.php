@@ -29,9 +29,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [CarController::class, 'index'])->name('car.index');
         Route::get('/create', [CarController::class, 'create'])->name('car.create');
         Route::post('', [CarController::class, 'store'])->name('car.store');
-        Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
+        Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit')->can('edit', 'car');
         Route::put('/{car}', [CarController::class, 'update'])->name('car.update');
-        Route::delete('/{car}', [CarController::class, 'destroy'])->name('car.destroy');
+        Route::delete('/{car}', [CarController::class, 'destroy'])->name('car.destroy')->can('delete', 'car');
     });
 });
 
