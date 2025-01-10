@@ -3,7 +3,7 @@
     <x-model-selector />
     <x-maker-selector />
     <x-state-selector />
-    <x-city-selector />
+    <x-city-selector/>
     <x-car-type-selector />
     <x-input-field name="yearFrom"  placeholder="Year from" />
     <x-input-field name="yearTo"  placeholder="Year to" />

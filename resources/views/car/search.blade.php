@@ -8,7 +8,7 @@
             <div class="w-full md:max-w-[500px] gap-2 flex-col md:flex-row flex">
                 <x-input-field name="search" placeholder="Search" />
                 <div class="md:max-w-[200px] w-full">
-                    <x-selector name="orderBy" placeholder="Order By" :$data />
+                    <x-selector name="orderBy" placeholder="Order By" />
                 </div>
             </div>
         </section>
@@ -42,7 +42,7 @@
                             <x-input-field name="priceTo" placeholder="Price to" />
                         </div>
                     </div>
-                    <x-selector name="mileage" placeholder="Any Mileage" :data="$data" label="Mileage" />
+                    <x-selector name="mileage" placeholder="Any Mileage"  label="Mileage" />
                     <x-state-selector  label="State/Region" />
                     <x-city-selector  label="City" />
                     <x-fuel-type-selector  label="Fuel Type" />
