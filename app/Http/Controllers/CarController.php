@@ -101,9 +101,24 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Car $car)
     {
-
+        $car->update([
+            'maker_id' =>request('maker_id'),
+            'model_id' =>request('model_id'),
+            'year' =>request('year'),
+            'car_type_id' =>request('car_type_id'),
+            'price' =>request('price'),
+            'vin' =>request('vin'),
+            'mileage' =>request('mileage'),
+            'fuel_type_id' =>request('fuel_type_id'),
+            'state_id' =>request('state_id'),
+            'city_id' =>request('city_id'),
+            'address' =>request('address'),
+            'phone' =>request('phone'),
+            "description"=>request("description")
+        ]);
+        return redirect(route('car.index'));
     }
 
     public function search(Car $car)

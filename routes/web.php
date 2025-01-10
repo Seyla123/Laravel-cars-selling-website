@@ -30,8 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [CarController::class, 'create'])->name('car.create');
         Route::post('', [CarController::class, 'store'])->name('car.store');
         Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit')->can('edit', 'car');
-        Route::get('/{car}/update', [CarController::class, 'edit'])->name('car.update')->can('edit', 'car');
-        Route::put('/{car}', [CarController::class, 'update'])->name('car.update');
+        Route::put('/update/{car}', [CarController::class, 'update'])->name('car.update')->can('edit', 'car');
         Route::delete('/{car}', [CarController::class, 'destroy'])->name('car.destroy')->can('delete', 'car');
     });
 });

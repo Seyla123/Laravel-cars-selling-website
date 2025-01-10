@@ -3,6 +3,7 @@
         <div class="p-4">
             <form action="{{route('car.update',$car)}}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 " enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 {{-- form field --}}
                 <div class="flex gap-6 w-full flex-col ">
                     {{-- makers , models , year --}}
@@ -57,10 +58,10 @@
                 </div>
                 <span class="bg-gray-200 w-[2px]"></span>
                 {{-- image upload --}}
-                <div class=" border border-dashed border-gray-300 rounded-lg p-4 w-full xl:max-w-[500px] max-h-[200px]">
+                <div class=" border border-dashed border-gray-300 rounded-lg p-4 w-full xl:max-w-[500px] lg:max-h-[200px] ">
                     {{-- image upload --}}
                     <div
-                        class="flex flex-col justify-center w-full items-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 h-full">
+                        class=" flex flex-col justify-center w-full items-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 h-full">
                         <label for="images" class="flex flex-col items-center justify-center w-full h-full">
                             <svg data-lucide="image" class="w-12 h-12 text-gray-400"></svg>
                             <p class="text-gray-600 text-sm">Drag and drop images here</p>
@@ -70,6 +71,7 @@
                     </div>
                     {{-- image preview --}}
                     <ul id="images-preview" class="flex flex-wrap gap-4 mt-4">
+                      
                     </ul>
                   
                 </div>
@@ -88,45 +90,28 @@
     const inputElement = document.getElementById('images');
     const formElement = document.querySelector('form');
     const previewContainer = document.getElementById('images-preview');
-
-    inputElement.addEventListener("change", (e) => {
-        previewContainer.innerHTML = ""; // Clear the preview container
-        const files = e.target.files;
-
-        for (const file of files) {
-            const fileReader = new FileReader();
-            fileReader.onload = (e) => {
-                // Create a container for each previewed image
-                const container = document.createElement('div');
+    const fetchImage = @js($car->images);
+    
+    
+    function loadImage (files){
+        files.forEach(image => {
+            console.log(image.image_path);
+            
+            const container = document.createElement('div');
                 container.className = "relative";
                 container.innerHTML = `
-                    <img src="${e.target.result}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
-                    <button class="absolute top-0 right-0 bg-gray-200 rounded-full p-1 hover:bg-gray-300">
+                    <img src="{{ asset('/storage/'. '${image.image_path}')}}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
+                    <button id="buttonRemove" class="absolute top-0 right-0 bg-gray-200 rounded-full p-1 hover:bg-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x w-4 h-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
                     </button>
                 `;
-                container.querySelector('button').onclick = () => {
+                container.querySelector('#buttonRemove').onclick = () => {
                     container.remove();
                 };
                 previewContainer.appendChild(container);
-            };
-            fileReader.readAsDataURL(file);
-        }
-    });
-
-    formElement.addEventListener('submit', (e) => {
-        // Ensure files are sent as part of FormData
-        const formData = new FormData(formElement);
-
-        // Attach files manually to the FormData (if needed)
-        for (const file of inputElement.files) {
-            formData.append('images[]', file);
-        }
-
-        // Debugging: Log the FormData to ensure files are added
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-    });
+        });
+    }
+    loadImage(fetchImage);
+    
 </script>
 
