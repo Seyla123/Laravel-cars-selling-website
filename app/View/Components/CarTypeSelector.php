@@ -12,7 +12,7 @@ class CarTypeSelector extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $placeholder="Car Type", public string|bool $label=false)
+    public function __construct( public string|bool $type=false)
     {
         
     }
@@ -23,6 +23,13 @@ class CarTypeSelector extends Component
     public function render(): View|Closure|string
     {
         $carTypes = CarType::get();
+        if($this->type){
+            return view('components.radio-selector',[
+                "items"=> $carTypes,
+                "name"=>"car_type_id",
+                "title" => "Car Type"
+            ]);
+        }
         return view('components.selector',[
             "items"=> $carTypes,
             "name"=>"car_type_id",

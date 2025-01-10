@@ -7,13 +7,13 @@
                 <div class="flex gap-6 w-full flex-col ">
                     {{-- makers , models , year --}}
                     <div class="flex gap-4 w-full">
-                        <x-selector name="maker" placeholder="Maker" label="Maker" :items="$makers" />
-                        <x-selector name="model" placeholder="Model" label="Model" :items="$models" />
+                        <x-model-selector  label="Model" />
+                        <x-maker-selector  label="Maker" />
                         <x-input-field name="year" placeholder="Year" label="Year" labelClass="font-medium	" />
                     </div>
                     {{-- Car Type --}}
                     <div>
-                        <x-radio-selector name="carType" title="Car Type" :items="$carTypes" />
+                        <x-car-type-selector type="radio"/>
                     </div>
                     {{-- price , vin code , mileage --}}
                     <div class="flex gap-4 w-full">
@@ -26,12 +26,12 @@
                     </div>
                     {{-- Fuel Types --}}
                     <div>
-                        <x-radio-selector name="fuelType" title="Fuel Type" :items="$fuelTypes"  />
+                        <x-fuel-type-selector type="radio"/>
                     </div>
                     {{-- state and city --}}
                     <div class="flex gap-4 w-full">
-                        <x-selector name="state" placeholder="Stae/Region" label="Stae/Region" :items="$states" />
-                        <x-selector name="city" placeholder="City" label="City" :items="$cities" />
+                        <x-state-selector  label="State/Region" />
+                        <x-city-selector  label="City" />
                     </div>
                     {{-- address and phone --}}
                     <div class="flex gap-4 w-full">
@@ -69,88 +69,7 @@
                     {{-- image preview --}}
                     <ul id="images-preview" class="flex flex-wrap gap-4 mt-4">
                     </ul>
-                    <script>
-                        const inputElement = document.getElementById('images');
-                        const formElement = document.querySelector('form');
-                        const previewContainer = document.getElementById('images-preview');
-                    
-                        inputElement.addEventListener("change", (e) => {
-                            previewContainer.innerHTML = ""; // Clear the preview container
-                            const files = e.target.files;
-                    
-                            for (const file of files) {
-                                const fileReader = new FileReader();
-                                fileReader.onload = (e) => {
-                                    // Create a container for each previewed image
-                                    const container = document.createElement('div');
-                                    container.className = "relative";
-                                    container.innerHTML = `
-                                        <img src="${e.target.result}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
-                                        <button class="absolute top-0 right-0 bg-gray-200 rounded-full p-1 hover:bg-gray-300">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x w-4 h-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                                        </button>
-                                    `;
-                                    container.querySelector('button').onclick = () => {
-                                        container.remove();
-                                    };
-                                    previewContainer.appendChild(container);
-                                };
-                                fileReader.readAsDataURL(file);
-                            }
-                        });
-                    
-                        formElement.addEventListener('submit', (e) => {
-                            // Ensure files are sent as part of FormData
-                            const formData = new FormData(formElement);
-                    
-                            // Attach files manually to the FormData (if needed)
-                            for (const file of inputElement.files) {
-                                formData.append('images[]', file);
-                            }
-                    
-                            // Debugging: Log the FormData to ensure files are added
-                            for (const [key, value] of formData.entries()) {
-                                console.log(key, value);
-                            }
-                    
-                            // Uncomment this if you handle form submission via JavaScript
-                            // e.preventDefault(); // Prevent default submission
-                            // fetch(formElement.action, {
-                            //     method: 'POST',
-                            //     body: formData,
-                            // })
-                            // .then(response => response.json())
-                            // .then(data => console.log(data))
-                            // .catch(error => console.error(error));
-                        });
-                    </script>
-                    
-                    {{-- <script>
-                        const inputElement = document.getElementById('images');
-                        inputElement.addEventListener("change", (e) => {
-                            const previewContainer = document.getElementById('images-preview');
-                            previewContainer.innerHTML = "";
-                            const files = e.target.files;
-                            for (const file of files) {
-                                const fileReader = new FileReader();
-                                fileReader.onload = (e) => {
-                                    const container = document.createElement('div');
-                                    container.className = "relative";
-                                    container.innerHTML = `
-                                        <img src="${e.target.result}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
-                                        <button class="absolute top-0 right-0 bg-gray-200 rounded-full p-1 hover:bg-gray-300">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x w-4 h-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                                        </button>
-                                    `;
-                                    container.querySelector('button').onclick = () => {
-                                        container.remove();
-                                    };
-                                    previewContainer.appendChild(container);
-                                };
-                                fileReader.readAsDataURL(file);
-                            }
-                        });
-                    </script> --}}
+                  
                 </div>
                 <div class="flex xl:hidden  w-full  items-center justify-center sm:justify-end">
                     <div class="sm:max-w-[300px] flex w-full gap-4">
@@ -163,3 +82,49 @@
         </div>
     </x-layouts.main-layout>
 </x-app-layout>
+<script>
+    const inputElement = document.getElementById('images');
+    const formElement = document.querySelector('form');
+    const previewContainer = document.getElementById('images-preview');
+
+    inputElement.addEventListener("change", (e) => {
+        previewContainer.innerHTML = ""; // Clear the preview container
+        const files = e.target.files;
+
+        for (const file of files) {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+                // Create a container for each previewed image
+                const container = document.createElement('div');
+                container.className = "relative";
+                container.innerHTML = `
+                    <img src="${e.target.result}" class="w-[150px] h-[150px] object-cover rounded-lg border border-gray-300"/>
+                    <button class="absolute top-0 right-0 bg-gray-200 rounded-full p-1 hover:bg-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x w-4 h-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                    </button>
+                `;
+                container.querySelector('button').onclick = () => {
+                    container.remove();
+                };
+                previewContainer.appendChild(container);
+            };
+            fileReader.readAsDataURL(file);
+        }
+    });
+
+    formElement.addEventListener('submit', (e) => {
+        // Ensure files are sent as part of FormData
+        const formData = new FormData(formElement);
+
+        // Attach files manually to the FormData (if needed)
+        for (const file of inputElement.files) {
+            formData.append('images[]', file);
+        }
+
+        // Debugging: Log the FormData to ensure files are added
+        for (const [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+    });
+</script>
+

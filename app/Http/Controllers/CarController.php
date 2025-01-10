@@ -35,13 +35,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        $makers = Maker::get();
-        $models = Model::get();
-        $carTypes = CarType::get();
-        $fuelTypes = FuelType::get();
-        $states = State::get();
-        $cities = City::get();
-        return view('car.create', compact('makers', 'models', 'carTypes', 'fuelTypes', 'states', 'cities'));
+        return view('car.create');
     }
 
     /**
@@ -49,59 +43,37 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        // request()->validate([
-        //     'maker' => ['required'],
-        //     'model' => ['required'],
-        //     'year' => ['required'],
-        //     'carType' => ['required'],
-        //     'price' => ['required'],
-        //     'vin' => ['required'],
-        //     'mileage' => ['required'],
-        //     'fuelType' => ['required'],
-        //     'state' => ['required'],
-        //     'city' => ['required'],
-        //     'address' => ['required'],
-        //     'phone' => ['required'],
-        // ]);
-        // Auth::user()->cars()->create([
-        //     'maker_id' => request('maker'),
-        //     'model_id' => request('model'),
-        //     'year' => request('year'),
-        //     'car_type_id' => request('carType'),
-        //     'price' => request('price'),
-        //     'vin' => request('vin'),
-        //     'mileage' => request('mileage'),
-        //     'fuel_type_id' => request('fuelType'),
-        //     'state_id' => request('state'),
-        //     'city_id' => request('city'),
-        //     'address' => request('address'),
-        //     'phone' => request('phone'),
-        //     'description' => request('description'),
-        // ])->images()->createMany(['image_path']);
-        // // images
-        // $car->images()->createMany([
-        //     [
-        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
-        //         'position' => 1
-        //     ],
-        //     [
-        //         'image_path' => 'https://via.placeholder.com/640x480.png/004400?text=nobis',
-        //         'position' => 2
-        //     ]
-        // ]);
-        // // car feature , set default
-        // $car->features()->create();
-        // // send email
-        // Mail::to($car->owner->email)->queue(new CarPosted($car));
-
-        // return redirect(route('car.index'));
+        $carAtrributes = request()->validate([
+            'maker_id' => ['required'],
+            'model_id' => ['required'],
+            'year' => ['required'],
+            'car_type_id' => ['required'],
+            'price' => ['required'],
+            'vin' => ['required'],
+            'mileage' => ['required'],
+            'fuel_type_id' => ['required'],
+            'state_id' => ['required'],
+            'city_id' => ['required'],
+            'address' => ['required'],
+            'phone' => ['required'],
+        ]);
+        
+        $car =Auth::user()->cars()->create([...$carAtrributes, 'description' => request('description')]);
+        $car->features()->create();
         $storedPaths=[];
-        foreach (request()->file('images') as $image) {
-            $storedPaths[] = $image->store('images','public'); // Saves in storage/app/logos
+        foreach (request()->file('images') as $image=>$value) {
+            $storedPaths[] = [
+                'image_path' => $value->store('images', 'public'),
+                'position' => $image+1
+            ];
         }
+        $car->images()->createMany($storedPaths);
+       
+        // // send email
+        Mail::to($car->owner->email)->queue(new CarPosted($car));
 
-        dump(request()->all());
-        dd($storedPaths);
+        return redirect(route('car.index'));
+        
     }
 
     /**

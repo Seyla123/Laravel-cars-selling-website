@@ -12,7 +12,7 @@ class FuelTypeSelector extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public string|bool $type=false)
     {
         //
     }
@@ -23,6 +23,13 @@ class FuelTypeSelector extends Component
     public function render(): View|Closure|string
     {
         $fuelTypes = FuelType::get();
+        if($this->type){
+            return view('components.radio-selector',[
+                "items"=> $fuelTypes,
+                "name"=>"fuel_type_id",
+                "title" => "Fuel Type"
+            ]);
+        }
         return view('components.selector',
     [
             "items" => $fuelTypes,
