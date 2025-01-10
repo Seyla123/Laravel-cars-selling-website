@@ -1,20 +1,4 @@
 <x-app-layout title="Car Detail">
-    @php
-        $carTypes = [
-            ['id' => 'sedan', 'value' => 'sedan', 'label' => 'Sedan'],
-            ['id' => 'hatchback', 'value' => 'hatchback', 'label' => 'Hatchback'],
-            ['id' => 'suv', 'value' => 'suv', 'label' => 'SUV (Sport Utility Vehicle)'],
-        ];
-
-        $fuelTypes = [
-            ['id' => 'gasoline', 'value' => 'gasoline', 'label' => 'Gasoline'],
-            ['id' => 'diesel', 'value' => 'diesel', 'label' => 'Diesel'],
-            ['id' => 'electric', 'value' => 'electric', 'label' => 'Electric'],
-            ['id' => 'hybrid', 'value' => 'hybrid', 'label' => 'Hybrid'],
-        ];
-
-        $data = ['cars' => 'Cars', 'boats' => 'Boats', 'trucks' => 'Trucks', 'motorcycles' => 'Motorcycles'];
-    @endphp
     <main class="max-w-screen-2xl mx-auto h-full flex-grow w-full p-2 md:p-4 space-y-4">
         {{-- header  --}}
         <section class="py-4 space-y-4 md:gap-2  flex flex-col w-full  justify-between md:flex-row  md:items-center">
@@ -24,7 +8,7 @@
             <div class="w-full md:max-w-[500px] gap-2 flex-col md:flex-row flex">
                 <x-input-field name="search" placeholder="Search" />
                 <div class="md:max-w-[200px] w-full">
-                    <x-selector name="orderBy" placeholder="Order By" :$data />
+                    <x-selector name="orderBy" placeholder="Order By" />
                 </div>
             </div>
         </section>
@@ -41,9 +25,9 @@
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
                 <div class="w-full flex flex-col gap-2">
-                    <x-selector name="Maker" placeholder="Maker" label="Maker" :$data />
-                    <x-selector name="Model" placeholder="Model" label="Model" :$data />
-                    <x-selector name="type" placeholder="Type" :data="$data" label="Type" />
+                    <x-model-selector label="Model"/>
+                     <x-car-type-selector  label="Car Type" />
+                     <x-maker-selector  label="Maker" />
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Year</h1>
                         <div class="flex gap-2 ">
@@ -58,10 +42,10 @@
                             <x-input-field name="priceTo" placeholder="Price to" />
                         </div>
                     </div>
-                    <x-selector name="mileage" placeholder="Any Mileage" :data="$data" label="Mileage" />
-                    <x-selector name="state" placeholder="State/Region" :data="$data" label="State/Region" />
-                    <x-selector name="city" placeholder="City" :data="$data" label="City" />
-                    <x-selector name="fuelType" placeholder="Fuel Type" :data="$data" label="Fuel Type" />
+                    <x-selector name="mileage" placeholder="Any Mileage"  label="Mileage" />
+                    <x-state-selector  label="State/Region" />
+                    <x-city-selector  label="City" />
+                    <x-fuel-type-selector  label="Fuel Type" />
                     {{-- submit and reset --}}
                     <div class="flex gap-2">
                         <x-button title="Reset"
@@ -79,7 +63,7 @@
                     @endforeach
                 </div>
                 {{-- pagination --}}
-                {{ $cars->onEachSide(1)->links('pagination') }}
+                {{ $cars->onEachSide(0)->links('pagination') }}
             </div>
             </div>
 

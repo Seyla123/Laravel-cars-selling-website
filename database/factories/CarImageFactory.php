@@ -18,7 +18,7 @@ class CarImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'image_path'=>fake()->imageUrl(),
+            'image_path'=>fake()->randomElement(['images/car1.jpg', 'images/car2.jpg', 'images/car3.jpg', 'images/car4.jpg', 'images/car5.avif', 'images/car6.webp']),
             'position'=>function (array $attributes) {
                 return Car::find($attributes['car_id'])->images()->count()+1;
             }
