@@ -18,14 +18,14 @@ class RegisterUserController extends Controller
     }
     public function store(Request $request) : RedirectResponse
     {
-        // $validation = $request->validate([
-        //     'name' => ['required'],
-        //     'email'=>['required','email','unique:users'],
-        //     'phone'=>['numeric'],
-        //     'password'=>['required'],
-        //     'confirmPassword'=>['same:password'],
-        // ]);
-        // $user = User::create($validation);
+        $validation = $request->validate([
+            'name' => ['required'],
+            'email'=>['required','email','unique:users'],
+            'phone'=>['numeric'],
+            'password'=>['required'],
+            'confirmPassword'=>['same:password'],
+        ]);
+        $user = User::create($validation);
 
 
         //send welcome email
