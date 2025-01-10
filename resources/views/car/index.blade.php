@@ -25,7 +25,7 @@
                 @forelse ($cars as $car)
                     <tr class="border-b border-gray-200 ">
                         <td class="px-6 py-4">
-                            <img src="{{ $car->primaryImage->image_path }}" alt="{{$car->model->name}}" class="max-w-[100px]">
+                            <img src="{{ assets($car->primaryImage->image_path) }}" alt="{{$car->model->name}}" class="max-w-[100px]">
                         </td>
                         <td scope="row" class="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap ">
                             {{ $car->year }} - {{ $car->maker->name }} {{ $car->model->name }}

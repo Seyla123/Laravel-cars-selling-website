@@ -1,9 +1,9 @@
 @props([ 'car' => [],'favorite' => false])
 <div class="w-full min-w-[200px] max-w- border h-full  flex flex-col rounded-lg bg-white shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer">
     {{-- image --}}
-   <div class="bg-gray-200 overflow-hidden rounded-t-lg">
+   <div class="overflow-hidden rounded-t-lg sm:min-h-[200px] bg-gray-200">
     <a href="{{route('car.show', $car)}}">
-    <img src="{{ $car->primaryImage->image_path }}" alt="{{ $car->model->name }} cars" srcset="" class="w-full h-full object-cover transition-all duration-300 transform hover:scale-110">
+    <img src="{{ asset('/storage/'.$car->primaryImage->image_path) }}" alt="{{ $car->model->name }} cars" srcset="" class="w-full h-full object-cover transition-all duration-300 transform hover:scale-110">
     </a>
    </div>
    {{-- details --}}

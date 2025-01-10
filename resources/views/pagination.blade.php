@@ -35,22 +35,6 @@
                     @endforeach
                 @endif
             @endforeach
-            {{-- @for ($i=1; $i<$totalPage+1;$i++)
-
-                @if ($i == $selectedPage)
-                    <li>
-                        <a href="#" aria-current="page" class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 ">
-                            {{$i}}
-                        </a>
-                    </li>
-                @else
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">
-                            {{$i}}
-                        </a>
-                    </li>
-                @endif
-            @endfor --}}
             <li @class(['hidden' => !$paginator->hasMorePages()])>
                 <a href="{{$paginator->nextPageUrl()}}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 ">
                 <span class="sr-only">Next</span>
