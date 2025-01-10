@@ -6,6 +6,7 @@
             @csrf
             <div class="space-y-6">
                 {{-- form fields --}}
+                <x-input-field name="name" placeholder="Enter name" :value="old('name')" label="Name" labelClass="font-medium" />
                 <x-input-field name="email" placeholder="Enter email" :value="old('email')" label="Email" labelClass="font-medium" />
                 <x-input-field name="password" type="password"  placeholder="Enter password" label="Password"
                     labelClass="font-medium" />
@@ -13,13 +14,6 @@
                     label="Confirm Password" labelClass="font-medium" />
                 {{-- check term condition --}}
                 <x-check-term />
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="text-red-500">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
             </div>
             {{-- Register button --}}
             <div class="!mt-8">

@@ -17,7 +17,7 @@ class SessionController extends Controller
         // validate
         $validation = request()->validate([
             'email'=>['required','email'],
-            'password'=>['required'],
+            'password'=>['required']
         ]);
         
         if(!Auth::attempt($validation)){
