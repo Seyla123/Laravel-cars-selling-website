@@ -128,7 +128,7 @@ class CarController extends Controller
     }
     public function watchlist()
     {
-        $cars = User::find(7)
+        $cars = Auth::user()
             ->favouriteCars()
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->where('deleted_at', null)
