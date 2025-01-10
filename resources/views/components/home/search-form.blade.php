@@ -5,29 +5,29 @@
 <div class="grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-5 gap-4 w-full" >
 
     <x-selector
-        name="Marker"
-        placeholder="Marker"
-        :data="$data"
+        name="maker"
+        placeholder="Maker"
+        :items="$makers"
     />
     <x-selector
-        name="Model"
+        name="model"
         placeholder="Model"
-        :data="$data"
+        :items="$models"
     />
     <x-selector
-        name="State"
+        name="state"
         placeholder="State/Region"
-        :data="$data"
+        :items="$states"
     />
     <x-selector
         name="City"
         placeholder="City"
-        :data="$data"
+        :items="$cities"
     />
     <x-selector
-        name="Type"
+        name="carType"
         placeholder="Type"
-        :data="$data"
+        :items="$carTypes"
     />
 
     <x-input-field name="yearFrom"  placeholder="Year from" />
@@ -37,7 +37,7 @@
     <x-selector
         name="Fuel"
         placeholder="Fuel Type"
-        :data="$data"
+        :items="$fuelTypes"
     />
 </div>
     <div class="flex flex-col md:max-w-[100px] w-full gap-2 items-center justify-center">
