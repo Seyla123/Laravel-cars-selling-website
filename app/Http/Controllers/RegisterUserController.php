@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
@@ -16,17 +18,18 @@ class RegisterUserController extends Controller
     }
     public function store(Request $request) : RedirectResponse
     {
-        $validation = $request->validate([
-            'name' => ['required'],
-            'email'=>['required','email','unique:users'],
-            'phone'=>['numeric'],
-            'password'=>['required'],
-            'confirmPassword'=>['same:password'],
-        ]);
-        $user = User::create($validation);
+        // $validation = $request->validate([
+        //     'name' => ['required'],
+        //     'email'=>['required','email','unique:users'],
+        //     'phone'=>['numeric'],
+        //     'password'=>['required'],
+        //     'confirmPassword'=>['same:password'],
+        // ]);
+        // $user = User::create($validation);
 
-        //  // // send email
-      
+
+        //send welcome email
+        Mail::to('mrrseyla.758@gmail.com')->queue(new UserRegistered());
         return redirect(route('login'));
     }
 }
