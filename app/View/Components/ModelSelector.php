@@ -12,9 +12,9 @@ class ModelSelector extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public string $placeholder="Model", public string|bool $label=false)
     {
-        //
+
     }
 
     /**
@@ -26,7 +26,6 @@ class ModelSelector extends Component
         return view('components.selector', [
             "items"=> $models,
             "name"=>"model_id",
-            "placeholder"=>"Model"
         ]);
     }
 }

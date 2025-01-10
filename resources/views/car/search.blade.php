@@ -41,9 +41,9 @@
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
                 <div class="w-full flex flex-col gap-2">
-                    <x-selector name="Maker" placeholder="Maker" label="Maker" :$data />
-                    <x-selector name="Model" placeholder="Model" label="Model" :$data />
-                    <x-selector name="type" placeholder="Type" :data="$data" label="Type" />
+                    <x-model-selector label="Model"/>
+                     <x-car-type-selector  label="Car Type" />
+                     <x-maker-selector  label="Maker" />
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Year</h1>
                         <div class="flex gap-2 ">
@@ -59,9 +59,9 @@
                         </div>
                     </div>
                     <x-selector name="mileage" placeholder="Any Mileage" :data="$data" label="Mileage" />
-                    <x-selector name="state" placeholder="State/Region" :data="$data" label="State/Region" />
-                    <x-selector name="city" placeholder="City" :data="$data" label="City" />
-                    <x-selector name="fuelType" placeholder="Fuel Type" :data="$data" label="Fuel Type" />
+                    <x-state-selector  label="State/Region" />
+                    <x-city-selector  label="City" />
+                    <x-fuel-type-selector  label="Fuel Type" />
                     {{-- submit and reset --}}
                     <div class="flex gap-2">
                         <x-button title="Reset"
