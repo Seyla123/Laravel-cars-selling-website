@@ -1,20 +1,4 @@
 <x-app-layout title="Car Detail">
-    @php
-        $carTypes = [
-            ['id' => 'sedan', 'value' => 'sedan', 'label' => 'Sedan'],
-            ['id' => 'hatchback', 'value' => 'hatchback', 'label' => 'Hatchback'],
-            ['id' => 'suv', 'value' => 'suv', 'label' => 'SUV (Sport Utility Vehicle)'],
-        ];
-
-        $fuelTypes = [
-            ['id' => 'gasoline', 'value' => 'gasoline', 'label' => 'Gasoline'],
-            ['id' => 'diesel', 'value' => 'diesel', 'label' => 'Diesel'],
-            ['id' => 'electric', 'value' => 'electric', 'label' => 'Electric'],
-            ['id' => 'hybrid', 'value' => 'hybrid', 'label' => 'Hybrid'],
-        ];
-
-        $data = ['cars' => 'Cars', 'boats' => 'Boats', 'trucks' => 'Trucks', 'motorcycles' => 'Motorcycles'];
-    @endphp
     <main class="max-w-screen-2xl mx-auto h-full flex-grow w-full p-2 md:p-4 space-y-4">
         {{-- header  --}}
         <section class="py-4 space-y-4 md:gap-2  flex flex-col w-full  justify-between md:flex-row  md:items-center">
@@ -79,7 +63,7 @@
                     @endforeach
                 </div>
                 {{-- pagination --}}
-                {{ $cars->onEachSide(1)->links('pagination') }}
+                {{ $cars->onEachSide(0)->links('pagination') }}
             </div>
             </div>
 

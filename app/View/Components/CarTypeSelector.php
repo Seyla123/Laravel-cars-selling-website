@@ -33,6 +33,7 @@ class CarTypeSelector extends Component
         return view('components.selector',[
             "items"=> $carTypes,
             "name"=>"car_type_id",
+            "placeholder" => "Car Type"
         ]);
     }
 }

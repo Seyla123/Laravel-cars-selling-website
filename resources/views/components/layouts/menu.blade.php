@@ -62,8 +62,8 @@
         <li>
             {{-- User --}}
             <x-dropdown id="userDropdown" :default="false">
-                <x-button :title="ucwords(\Illuminate\Support\Facades\Auth::user()->name)"
-                        class="rounded-full w-full py-3 px-6  flex gap-2 items-center ">
+                <x-button :title="Illuminate\Support\Str::limit(ucwords(\Illuminate\Support\Facades\Auth::user()->name), 20, '...')"
+                        class="rounded-full w-full py-3 px-6  flex gap-2 items-center">
                         <x-slot:leftIcon>
                             <svg data-lucide="user-circle" class="w-5 h-5 "></svg>
                         </x-slot:leftIcon>
@@ -72,7 +72,7 @@
                         </x-slot:rightIcon>
                 </x-button>
                 <x-slot:dropdownContent>
-                    <p class="text-sm px-4 py-2">{{Str::ucfirst(\Illuminate\Support\Facades\Auth::user()->email)}}</p>
+                    <p class="text-sm px-4 py-2 truncate">{{Str::ucfirst(\Illuminate\Support\Facades\Auth::user()->email)}}</p>
                     <hr>
                     <ul class="py-2 text-sm text-gray-700  " aria-labelledby="dropdownDefaultButton">
                             <li>
