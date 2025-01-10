@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Model;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,11 @@ class ModelSelector extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.model-selector');
+        $models = Model::get();
+        return view('components.selector', [
+            "items"=> $models,
+            "name"=>"model_id",
+            "placeholder"=>"Model"
+        ]);
     }
 }

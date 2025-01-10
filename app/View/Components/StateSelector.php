@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\State;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,11 @@ class StateSelector extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.state-selector');
+        $states = State::get();
+        return view('components.selector',[
+            "items"=>$states,
+            "name"=>"state_id", 
+            "placeholder"=>"State/Region"
+        ]);
     }
 }

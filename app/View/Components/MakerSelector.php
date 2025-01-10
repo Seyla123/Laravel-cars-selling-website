@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Maker;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,11 @@ class MakerSelector extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.maker-selector');
+        $makers = Maker::get();
+        return view('components.selector',[
+            "items" => $makers,
+            "name" => "maker_id",
+            "placeholder" => "Maker"
+        ]);
     }
 }

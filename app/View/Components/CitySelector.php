@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\City;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,11 @@ class CitySelector extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.city-selector');
+        $cities = City::get();
+        return view('components.selector',[
+            "items" => $cities,
+            "name" => "city_id",
+            "placeholder" => "City"
+        ]);
     }
 }

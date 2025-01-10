@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\FuelType;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,12 @@ class FuelTypeSelector extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.fuel-type-selector');
+        $fuelTypes = FuelType::get();
+        return view('components.selector',
+    [
+            "items" => $fuelTypes,
+            "name" => "fuel_type_id",
+            "placeholder" => "Fuel Type"
+    ]);
     }
 }
