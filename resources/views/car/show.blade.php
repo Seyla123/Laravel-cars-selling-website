@@ -38,7 +38,7 @@
                 />
 
                 {{-- car owner contact --}}
-                <x-car-owner-contact :phone="$car->owner->phone" />
+                <x-car-owner-contact :phone="$car->phone??$car->owner->phone" />
 
             </div>
         </div>
