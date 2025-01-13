@@ -1,19 +1,20 @@
 <x-app-layout title="Add New Car">
     <x-layouts.main-layout title="Add New Car">
         <div class="p-4">
-            <form action="{{route('car.store')}}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 " enctype="multipart/form-data">
+            <form action="{{ route('car.store') }}" method="POST" class="flex w-full flex-col xl:flex-row gap-4 "
+                enctype="multipart/form-data">
                 @csrf
                 {{-- form field --}}
                 <div class="flex gap-6 w-full flex-col ">
                     {{-- makers , models , year --}}
                     <div class="flex gap-4 w-full">
-                        <x-model-selector  label="Model" />
-                        <x-maker-selector  label="Maker" />
+                        <x-model-selector label="Model" />
+                        <x-maker-selector label="Maker" />
                         <x-input-field name="year" placeholder="Year" label="Year" labelClass="font-medium	" />
                     </div>
                     {{-- Car Type --}}
                     <div>
-                        <x-car-type-selector type="radio"/>
+                        <x-car-type-selector type="radio" />
                     </div>
                     {{-- price , vin code , mileage --}}
                     <div class="flex gap-4 w-full">
@@ -26,12 +27,12 @@
                     </div>
                     {{-- Fuel Types --}}
                     <div>
-                        <x-fuel-type-selector type="radio"/>
+                        <x-fuel-type-selector type="radio" />
                     </div>
                     {{-- state and city --}}
                     <div class="flex gap-4 w-full">
-                        <x-state-selector  label="State/Region" />
-                        <x-city-selector  label="City" />
+                        <x-state-selector label="State/Region" />
+                        <x-city-selector label="City" />
                     </div>
                     {{-- address and phone --}}
                     <div class="flex gap-4 w-full">
@@ -69,7 +70,7 @@
                     {{-- image preview --}}
                     <ul id="images-preview" class="flex flex-wrap gap-4 mt-4">
                     </ul>
-                  
+
                 </div>
                 <div class="flex xl:hidden  w-full  items-center justify-center sm:justify-end">
                     <div class="sm:max-w-[300px] flex w-full gap-4">
@@ -127,4 +128,3 @@
         }
     });
 </script>
-

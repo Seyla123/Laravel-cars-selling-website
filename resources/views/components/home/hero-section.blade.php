@@ -9,17 +9,21 @@
             </h1>
             <p class="text-gray-200 text-lg">Get the best deals on cars, from sedans to SUVs. Find your dream car today!</p>
             <div class="max-w-sm flex gap-4 justify-center sm:justify-start">
-                <x-button title="Sell Car" customClass="bg-main-800 shadow-2xl flex items-center justify-center w-full py-3 px-4 text-sm gap-2 tracking-wider border-main-200 border-2 font-semibold text-main-200 hover:bg-main-200 hover:text-main-400 focus:outline-none rounded-md transition-transform transform hover:scale-110 animate-bounce shadow-2xl" >
-                    <x-slot:leftIcon>
-                        <svg data-lucide="badge-dollar-sign" class="w-4 h-4 ml-2"></svg>
-                    </x-slot:leftIcon>
-                </x-button>
-                <x-button title="Buy Car"
+                <a href="{{route('car.create')}}" class="w-full">
+                    <x-button title="Sell Car" customClass="bg-main-800 shadow-2xl flex items-center justify-center w-full py-3 px-4 text-sm gap-2 tracking-wider border-main-200 border-2 font-semibold text-main-200 hover:bg-main-200 hover:text-main-400 focus:outline-none rounded-md transition-transform transform hover:scale-110 animate-bounce shadow-2xl" >
+                        <x-slot:leftIcon>
+                            <svg data-lucide="badge-dollar-sign" class="w-4 h-4 ml-2"></svg>
+                        </x-slot:leftIcon>
+                    </x-button>
+                </a>
+                <a href="{{route('car.search')}}" class="w-full">
+                    <x-button title="Buy Car"
                     customClass="duration-500 flex items-center justify-center w-full py-3 px-4 text-sm tracking-wider border-main-200 border-2 font-semibold text-main-200 hover:bg-main-200 hover:text-main-400 focus:outline-none rounded-md transition-transform transform hover:scale-110 animate-spin-slow shadow-2xl" >
                     <x-slot:leftIcon>
                         <svg data-lucide="check" class="w-4 h-4 mr-2"></svg>
                     </x-slot:leftIcon>
                 </x-button>
+            </a>
             </div>
         </div>
         {{-- image --}}

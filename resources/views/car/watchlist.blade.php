@@ -19,7 +19,7 @@
                 @else
                     <div class="bg-white rounded-lg flex w-full justify-center flex-col items-center flex-1">
                         <p class="text-center text-lg ">No car found in your watchlist. 
-                            <a href="{{route('car.index')}}" class="text-blue-500">View cars</a>
+                            <a href="{{route('home')}}" class="text-blue-500">View cars</a>
                         </p>
                     </div>
                 @endif

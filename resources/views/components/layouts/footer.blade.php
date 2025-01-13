@@ -19,12 +19,21 @@
         </div>
         <div class="animate-fadeInUp duration-1100">
             <h1 class="text-3xl font-bold mb-4 text-white">Follow Us</h1>
-            <ul class="text-gray-300">
-                <li class="hover:text-gray-100 transition-colors duration-300"><a href="https://facebook.com" target="_blank"><svg data-lucide="facebook" class="w-6 h-6"></svg></a></li>
-                <li class="hover:text-gray-100 transition-colors duration-300"><a href="https://instagram.com" target="_blank"><svg data-lucide="instagram" class="w-6 h-6"></svg></a></li>
-                <li class="hover:text-gray-100 transition-colors duration-300"><a href="https://twitter.com" target="_blank"><svg data-lucide="twitter" class="w-6 h-6"></svg></a></li>
+            <ul class="text-gray-300 space-y-1">
+                <li class="hover:text-gray-100 transition-colors duration-300"><a class="flex items-center gap-2" href="https://facebook.com/Seav.seyla" target="_blank"><svg data-lucide="facebook" class="w-6 h-6"></svg>Seav Seyla</a></li>
+                <li class="hover:text-gray-100 transition-colors duration-300">
+                    <a href="https://instagram.com/seav_seyla" class="flex items-center gap-2" target="_blank"><svg data-lucide="instagram" class="w-6 h-6"></svg>
+                        Seav Seyla
+                    </a>
+                </li>
+                <li class="hover:text-gray-100 transition-colors duration-300">
+                    <a href="https://github.com/Seyla123" class="flex items-center gap-2" target="_blank"><svg data-lucide="github" class="w-6 h-6"></svg>a
+                        Seyla123
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
 </footer>
+
 

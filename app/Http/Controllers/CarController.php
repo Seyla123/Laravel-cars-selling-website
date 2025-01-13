@@ -4,12 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\CarPosted;
 use App\Models\Car;
-use App\Models\CarType;
-use App\Models\City;
-use App\Models\FuelType;
-use App\Models\Maker;
-use App\Models\Model;
-use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -58,7 +52,10 @@ class CarController extends Controller
             'phone' => ['required'],
         ]);
         
-        $car =Auth::user()->cars()->create([...$carAtrributes, 'description' => request('description')]);
+        $car =Auth::user()->cars()->create([
+            ...$carAtrributes, 
+            'description' => request('description'),
+            'published_at' => now()]);
         $car->features()->create();
         $storedPaths=[];
         foreach (request()->file('images') as $image=>$value) {
@@ -90,45 +87,138 @@ class CarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Car $car)
     {
-        return view('car.edit');
+        return view('car.edit',compact('car'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Car $car)
     {
-
+        $car->update([
+            'maker_id' =>request('maker_id'),
+            'model_id' =>request('model_id'),
+            'year' =>request('year'),
+            'car_type_id' =>request('car_type_id'),
+            'price' =>request('price'),
+            'vin' =>request('vin'),
+            'mileage' =>request('mileage'),
+            'fuel_type_id' =>request('fuel_type_id'),
+            'state_id' =>request('state_id'),
+            'city_id' =>request('city_id'),
+            'address' =>request('address'),
+            'phone' =>request('phone'),
+            "description"=>request("description")
+        ]);
+        return redirect(route('car.index'));
     }
 
-    public function search(Car $car)
+    public function search(Request $request)
     {
-        $makers = Maker::get();
-        $models = Model::get();
-        $carTypes = CarType::get();
-        $fuelTypes = FuelType::get();
-        $states = State::get();
-        $cities = City::get();
-        $query = Car::where('published_at', '<', now())
-            ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
-            ->orderBy('published_at', 'desc');
+        $orderBy = [
+            (object) [
+                "id" => "price",
+                "name" => "Price"
+            ],
+            (object) [
+                "id" => "year",
+                "name" => "year"
+            ]
+        ];
+        $query = Car::where('published_at', '<', now());
+        $query->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType');
+
+        // maker
+        $query->when(request('maker_id'), function ($query) {
+                $query->where('maker_id', request('maker_id'));
+            });
+
+        // model
+        $query->when(request('model_id'), function ($query) {
+                $query->where('model_id', request('model_id'));
+            });
+        
+        // car type
+        $query->when(request('car_type_id'), function ($query) {
+                $query->where('car_type_id', request('car_type_id'));
+            });
+
+        // fuel type
+        $query->when(request('fuel_type_id'), function ($query) {
+                $query->where('fuel_type_id', request('fuel_type_id'));
+            });
+
+        // state
+        $query->when(request('state_id'), function ($query) {
+                $query->where('state_id', request('state_id'));
+            });
+
+        // city
+        $query->when(request('city_id'), function ($query) {
+                $query->where('city_id', request('city_id'));
+            });
+        
+        // year
+        $query->when(request('yearFrom') && request('yearTo'), function ($query) {
+            $query->whereBetween('year', [request('yearFrom'), request('yearTo')]);
+        });
+
+        // price
+        $query->when(request('priceFrom') && request('priceTo'), function ($query) {
+            $query->whereBetween('price', [request('priceFrom'), request('priceTo')]);
+        });
+
+        $query->when(request('orderBy'), function ($query) {
+            $query->orderBy(request('orderBy'), 'desc');
+        }, function ($query) {
+            $query->orderBy('published_at', 'desc');
+        });
+
+        // search by input
+        $query->when(request('search'), function ($query) {
+            $search = request('search');
+            $query->where('description', 'like', "%{$search}%")
+            ->orWhere('vin', 'like', "%{$search}%")
+            ->orWhere('mileage', 'like', "%{$search}%")
+            ->orWhere('address', 'like', "%{$search}%");
+            $query->orWhere(function ($query) use ($search) {
+                $query->whereHas('model', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('maker', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('carType', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('fuelType', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('city', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+            });
+        });
+
 
         $cars = $query->paginate(12);
-        return view('car.search', compact('cars'));
+        return view('car.search', compact('cars', 'orderBy'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Car $car)
     {
+        $car->delete();
 
+        return redirect()->route('car.index')->with('success', 'Car deleted successfully.');
     }
     public function watchlist()
     {
-        $cars = User::find(7)
+        $cars = Auth::user()
             ->favouriteCars()
             ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
             ->where('deleted_at', null)
