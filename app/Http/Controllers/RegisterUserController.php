@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\UserRegistered;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
 class RegisterUserController extends Controller
@@ -27,10 +24,8 @@ class RegisterUserController extends Controller
             'confirmPassword'=>['same:password'],
         ]);
         $user = User::create($validation);
-
-        event(new Registered($user));
-        //send welcome email
-        Mail::to('mrrseyla.758@gmail.com')->queue(new UserRegistered());
+        $user->sendEmailVerificationNotification();
+        
         return redirect(route('login'));
     }
 }

@@ -9,9 +9,9 @@ use Illuminate\Http\RedirectResponse;
 
 class VerifyEmaillController extends Controller
 {
-    public function emailVerify($id, $hash):RedirectResponse
+    public function emailVerify($id):RedirectResponse
     {
-        $user = User::find($id);
+        $user = User::where('id',$id)->get()->first();
         
         if (!$user) {
             abort(404, 'User not found');
@@ -20,11 +20,10 @@ class VerifyEmaillController extends Controller
         if (! request()->hasValidSignature()) {
             abort(403, 'Invalid or expired verification link.');
         }
-        
-        if (!$user->email_verified_at) {
-            $user->email_verified_at = now();
-            $user->save();
-            event(new Verified(...$user));
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+            event(new Verified($user));
         }
         return redirect(route('login'));
     }
