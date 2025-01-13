@@ -6,10 +6,12 @@
                 <h1 class="text-3xl font-bold md:text-nowrap ">Define Your Search Criteria</h1>
             </div>
             <div class="w-full md:max-w-[500px] gap-2 flex-col md:flex-row flex">
-                <x-input-field name="search" placeholder="Search" />
+               <form action="{{ route('car.search') }}" method="GET" class="w-full md:max-w-[500px] gap-2 flex-col md:flex-row flex">
+                <x-input-field name="search" placeholder="Search" :value="request('search')" />
                 <div class="md:max-w-[200px] w-full">
                     <x-selector name="orderBy" placeholder="Order By" :items="$orderBy" :value="request('orderBy')"/>
                 </div>
+               </form>
             </div>
         </section>
         {{-- main --}}
@@ -56,7 +58,13 @@
                 </div>
             </form>
             {{-- cars result --}}
-
+            @if ($cars->isEmpty())
+            <div class="min-h-[500px] flex flex-col gap-4 md:gap-8 justify-center items-center bg-white text-gray-700  rounded-lg p-6 w-full ">
+                <svg data-lucide="search" class="w-12 h-12 text-gray-400 mb-4"></svg>
+                <h2 class="text-2xl font-semibold">No Results Found</h2>
+                <p class="text-center">We couldn't find any results for your search. Please try adjusting your search criteria or check back later.</p>
+            </div>
+            @else
             <div class="flex flex-col gap-2 md:gap-6 justify-between ">
                 <div class="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     @foreach ($cars as $car)
@@ -66,6 +74,7 @@
                 {{-- pagination --}}
                 {{ $cars->onEachSide(0)->links('pagination') }}
             </div>
+            @endif
             </div>
 
         </section>

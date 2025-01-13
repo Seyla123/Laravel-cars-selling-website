@@ -21,7 +21,7 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 // Public Routes
 Route::get('car/search', [CarController::class, 'search'])->name('car.search');
-Route::get('car/searchCar', [CarController::class, 'searchCar'])->name('car.searchCar');
+
 // Authenticated Routes
 Route::middleware('auth')->group(function () {
     Route::prefix('/car')->group(function () {
