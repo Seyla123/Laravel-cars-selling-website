@@ -8,7 +8,7 @@
             <div class="w-full md:max-w-[500px] gap-2 flex-col md:flex-row flex">
                 <x-input-field name="search" placeholder="Search" />
                 <div class="md:max-w-[200px] w-full">
-                    <x-selector name="orderBy" placeholder="Order By" />
+                    <x-selector name="orderBy" placeholder="Order By" :items="$orderBy" :value="request('orderBy')"/>
                 </div>
             </div>
         </section>
@@ -25,33 +25,34 @@
                 {{-- categories search --}}
                 <h1 class="text-xl font-bold text-nowrap ">By Categories</h1>
                 <div class="w-full flex flex-col gap-2">
-                    <x-model-selector label="Model"/>
-                     <x-car-type-selector  label="Car Type" />
-                     <x-maker-selector  label="Maker" />
+                    <x-model-selector label="Model" :value="request('model_id')"/>
+                     <x-car-type-selector  label="Car Type" :value="request('car_type_id')" />
+                     <x-maker-selector  label="Maker" :value="request('maker_id')" />
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Year</h1>
                         <div class="flex gap-2 ">
-                            <x-input-field name="yearFrom" placeholder="Year from" />
-                            <x-input-field name="yearTo" placeholder="Year to" />
+                            <x-input-field name="yearFrom" placeholder="Year from" :value="request('yearFrom')"/>
+                            <x-input-field name="yearTo" placeholder="Year to" :value="request('yearTo')"/>
                         </div>
                     </div>
                     <div>
                         <h1 class="text-sm mb-2 block font-medium">Price</h1>
                         <div class="flex gap-2 ">
-                            <x-input-field name="priceFrom" placeholder="Price from" />
-                            <x-input-field name="priceTo" placeholder="Price to" />
+                            <x-input-field name="priceFrom" placeholder="Price from" :value="request('priceFrom')"/>
+                            <x-input-field name="priceTo" placeholder="Price to" :value="request('priceTo')"/>
                         </div>
                     </div>
-                    <x-selector name="mileage" placeholder="Any Mileage"  label="Mileage" />
-                    <x-state-selector  label="State/Region" />
-                    <x-city-selector  label="City" />
-                    <x-fuel-type-selector  label="Fuel Type" />
+                    <x-state-selector  label="State/Region" :value="request('state_id')"/>
+                    <x-city-selector  label="City" :value="request('city_id')" />
+                    <x-fuel-type-selector  label="Fuel Type" :value="request('fuel_type_id')"/>
                     {{-- submit and reset --}}
                     <div class="flex gap-2">
-                        <x-button title="Reset"
+                        <a href="{{ route('car.search') }}" class="w-full">
+                            <x-button title="Reset"
                             customClass="duration-500 flex gap-2 items-center justify-center w-full py-3 px-3  text-sm tracking-wider border-main-600 border-2 font-semibold text-main-600  hover:bg-main-600 hover:text-white focus:outline-none rounded-md  " />
-                        <x-button title="Search" type="submit" />
-                    </div>
+                        </a>
+                            <x-button title="Search" type="submit" />
+                        </div>
                 </div>
             </form>
             {{-- cars result --}}

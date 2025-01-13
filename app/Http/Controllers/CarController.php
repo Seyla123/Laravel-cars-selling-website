@@ -121,20 +121,70 @@ class CarController extends Controller
         return redirect(route('car.index'));
     }
 
-    public function search(Car $car)
+    public function search(Request $request)
     {
-        $makers = Maker::get();
-        $models = Model::get();
-        $carTypes = CarType::get();
-        $fuelTypes = FuelType::get();
-        $states = State::get();
-        $cities = City::get();
-        $query = Car::where('published_at', '<', now())
-            ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
-            ->orderBy('published_at', 'desc');
+        if(request('search')) {
+            dd($request->search);
+        }
+        $orderBy = [
+            (object) [
+                "id" => "price",
+                "name" => "Price"
+            ],
+            (object) [
+                "id" => "year",
+                "name" => "year"
+            ]
+        ];
+        $query = Car::where('published_at', '<', now());
+            
+        // maker
+        $query->when(request('maker_id'), function ($query) {
+                $query->where('maker_id', request('maker_id'));
+            });
+
+        // model
+        $query->when(request('model_id'), function ($query) {
+                $query->where('model_id', request('model_id'));
+            });
+        
+        // car type
+        $query->when(request('car_type_id'), function ($query) {
+                $query->where('car_type_id', request('car_type_id'));
+            });
+
+        // fuel type
+        $query->when(request('fuel_type_id'), function ($query) {
+                $query->where('fuel_type_id', request('fuel_type_id'));
+            });
+
+        // state
+        $query->when(request('state_id'), function ($query) {
+                $query->where('state_id', request('state_id'));
+            });
+
+        // city
+        $query->when(request('city_id'), function ($query) {
+                $query->where('city_id', request('city_id'));
+            });
+        
+        // year
+        $query->when(request('yearFrom') && request('yearTo'), function ($query) {
+            $query->whereBetween('year', [request('yearFrom'), request('yearTo')]);
+        });
+
+        // price
+        $query->when(request('priceFrom') && request('priceTo'), function ($query) {
+            $query->whereBetween('price', [request('priceFrom'), request('priceTo')]);
+        });
+
+        $query->orderBy('published_at', 'desc');
+
+
+        $cars = $query->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')->paginate(12);
 
         $cars = $query->paginate(12);
-        return view('car.search', compact('cars'));
+        return view('car.search', compact('cars', 'orderBy'));
     }
 
     /**
