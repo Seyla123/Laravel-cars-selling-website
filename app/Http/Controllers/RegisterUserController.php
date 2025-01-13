@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserRegistered;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -27,7 +28,7 @@ class RegisterUserController extends Controller
         ]);
         $user = User::create($validation);
 
-
+        event(new Registered($user));
         //send welcome email
         Mail::to('mrrseyla.758@gmail.com')->queue(new UserRegistered());
         return redirect(route('login'));

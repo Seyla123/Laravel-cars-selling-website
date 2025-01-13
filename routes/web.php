@@ -4,7 +4,9 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\VerifyEmaillController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -17,13 +19,20 @@ Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->name('login');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
+// Verify Email
+Route::get('/email/verify', [VerifyEmaillController::class , 'emailNotice'])
+->name('verification.notice');
+
+ 
+Route::get('/email/verify/{id}/{hash}', [VerifyEmaillController::class , 'emailVerify'])
+->middleware(['signed'])->name('verification.verify');
 // Car
 
 // Public Routes
 Route::get('car/search', [CarController::class, 'search'])->name('car.search');
 
 // Authenticated Routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::prefix('/car')->group(function () {
         Route::get('/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
         Route::get('/', [CarController::class, 'index'])->name('car.index');

@@ -128,7 +128,7 @@ class CarController extends Controller
             ]
         ];
         $query = Car::where('published_at', '<', now());
-        $cars = $query->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')->paginate(12);
+        $query->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType');
 
         // maker
         $query->when(request('maker_id'), function ($query) {
@@ -178,7 +178,7 @@ class CarController extends Controller
 
         // search by input
         $query->when(request('search'), function ($query) {
-            $search = request('search'); 
+            $search = request('search');
             $query->where('description', 'like', "%{$search}%")
             ->orWhere('vin', 'like', "%{$search}%")
             ->orWhere('mileage', 'like', "%{$search}%")
