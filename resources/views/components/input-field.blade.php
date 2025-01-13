@@ -6,7 +6,7 @@
  --}}
 <div class="w-full ">
     @if ($label)<label class="text-sm mb-2 block {{ $labelClass }}">{{ $label }}</label>@endif
-    <input name="{{ $name }}" type="{{ $type }}"
+    <input name="{{ $name }}" type="{{ $type }}" id="{{ $name }}"
         class="block appearance-none w-full px-4 py-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500{{ $class }}"
         placeholder="{{ $placeholder }}" value="{{$value}}" />
     @error($name)

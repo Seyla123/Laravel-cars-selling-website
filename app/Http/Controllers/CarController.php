@@ -4,12 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\CarPosted;
 use App\Models\Car;
-use App\Models\CarType;
-use App\Models\City;
-use App\Models\FuelType;
-use App\Models\Maker;
-use App\Models\Model;
-use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -121,20 +115,96 @@ class CarController extends Controller
         return redirect(route('car.index'));
     }
 
-    public function search(Car $car)
+    public function search(Request $request)
     {
-        $makers = Maker::get();
-        $models = Model::get();
-        $carTypes = CarType::get();
-        $fuelTypes = FuelType::get();
-        $states = State::get();
-        $cities = City::get();
-        $query = Car::where('published_at', '<', now())
-            ->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')
-            ->orderBy('published_at', 'desc');
+        $orderBy = [
+            (object) [
+                "id" => "price",
+                "name" => "Price"
+            ],
+            (object) [
+                "id" => "year",
+                "name" => "year"
+            ]
+        ];
+        $query = Car::where('published_at', '<', now());
+        $cars = $query->with('primaryImage', 'model', 'city', 'maker', 'carType', 'fuelType')->paginate(12);
+
+        // maker
+        $query->when(request('maker_id'), function ($query) {
+                $query->where('maker_id', request('maker_id'));
+            });
+
+        // model
+        $query->when(request('model_id'), function ($query) {
+                $query->where('model_id', request('model_id'));
+            });
+        
+        // car type
+        $query->when(request('car_type_id'), function ($query) {
+                $query->where('car_type_id', request('car_type_id'));
+            });
+
+        // fuel type
+        $query->when(request('fuel_type_id'), function ($query) {
+                $query->where('fuel_type_id', request('fuel_type_id'));
+            });
+
+        // state
+        $query->when(request('state_id'), function ($query) {
+                $query->where('state_id', request('state_id'));
+            });
+
+        // city
+        $query->when(request('city_id'), function ($query) {
+                $query->where('city_id', request('city_id'));
+            });
+        
+        // year
+        $query->when(request('yearFrom') && request('yearTo'), function ($query) {
+            $query->whereBetween('year', [request('yearFrom'), request('yearTo')]);
+        });
+
+        // price
+        $query->when(request('priceFrom') && request('priceTo'), function ($query) {
+            $query->whereBetween('price', [request('priceFrom'), request('priceTo')]);
+        });
+
+        $query->when(request('orderBy'), function ($query) {
+            $query->orderBy(request('orderBy'), 'desc');
+        }, function ($query) {
+            $query->orderBy('published_at', 'desc');
+        });
+
+        // search by input
+        $query->when(request('search'), function ($query) {
+            $search = request('search'); 
+            $query->where('description', 'like', "%{$search}%")
+            ->orWhere('vin', 'like', "%{$search}%")
+            ->orWhere('mileage', 'like', "%{$search}%")
+            ->orWhere('address', 'like', "%{$search}%");
+            $query->orWhere(function ($query) use ($search) {
+                $query->whereHas('model', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('maker', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('carType', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('fuelType', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('city', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+            });
+        });
+
 
         $cars = $query->paginate(12);
-        return view('car.search', compact('cars'));
+        return view('car.search', compact('cars', 'orderBy'));
     }
 
     /**
