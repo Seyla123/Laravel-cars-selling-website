@@ -9,10 +9,10 @@
             {{-- lelf side --}}
 
             {{-- image details --}}
-            <x-car-show-image 
-                :primaryImage="$car->primaryImage->image_path" 
-                :images="$car->images" 
-                :imageTitle="$car->model->name" 
+            <x-car-show-image
+                :primaryImage="$car->primaryImage->image_path"
+                :images="$car->images"
+                :imageTitle="$car->model->name"
             />
 
             {{-- right side --}}
@@ -20,11 +20,18 @@
                 {{-- car price and favorite --}}
                 <div class="flex items-center justify-between ">
                     <h1 class="text-3xl font-bold py-4  ">${{$car->price}}</h1>
-                    <button
-                        class="{{ $favorite && 'opacity-50' }} hover:opacity-100  hover:scale-110 transition-all duration-300">
-                        <svg data-lucide="heart"
-                            class="w-5 h-5  {{ $favorite ? 'fill-red-500 text-red-500' : '' }}"></svg>
-                    </button>
+                    <div class="flex gap-2">
+                        @can('edit', $car)
+                            <a href="{{ route('car.edit', $car) }}" class="text-blue-500 hover:text-blue-700">
+                                <svg data-lucide="pencil" class="w-6 h-6"></svg>
+                            </a>
+                        @endcan
+                        <button
+                            class="{{ $favorite && 'opacity-50' }} hover:opacity-100  hover:scale-110 transition-all duration-300">
+                            <svg data-lucide="heart"
+                                class="w-5 h-5  {{ $favorite ? 'fill-red-500 text-red-500' : '' }}"></svg>
+                        </button>
+                    </div>
                 </div>
                 <hr>
                 {{-- car details --}}
@@ -32,9 +39,9 @@
                 <hr>
                 
                 {{-- profile details --}}
-                <x-car-owner-profile 
-                    :name="$car->owner->name" 
-                    :totalCars="$car->owner->cars()->count()" 
+                <x-car-owner-profile
+                    :name="$car->owner->name"
+                    :totalCars="$car->owner->cars()->count()"
                 />
 
                 {{-- car owner contact --}}
